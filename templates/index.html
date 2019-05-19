@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<title>SEJABO</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="icon" type="image/png" href="../static/img/icons/favicon.ico"/>
+
+	
+	<link rel="stylesheet" type="text/css" href="../static/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+</head>
+
+<body>
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			<span class="close"></span>
+			<div class="container-login100">
+				<div class="wrap-login100">
+					<div id="information">
+						<span class="login100-form-title">
+							우리들의 대자보<br>SEJABO
+						</span>
+						<img class="sejong_logo" src="../static/img/SejaboLOGO.png">
+						<br>
+						<br>
+						<br>
+					</div>
+					<i id="explain_gobutton" class="fa fa-angle-right"></i>
+					<button id="myBtn">살펴보다</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="board1" class="board1"></div>
+
+	<div id="menu_1" class="menu_1">
+		<div class="login_test">
+				<span class="login100-form-title" style="color: black;">
+					Login
+				</span>
+		
+				<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+					<input class="input100" type="text" name="email" placeholder="Student Number">
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<span class="lnr lnr-envelope"></span>
+					</span>
+				</div>
+		
+				<div class="wrap-input100 validate-input" data-validate="Password is required">
+					<input class="input100" type="password" name="pass" placeholder="Password">
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<span class="lnr lnr-lock"></span>
+					</span>
+				</div>
+		
+				<div class="container-login100-form-btn">
+					<button class="login100-form-btn">
+						Login
+					</button>
+				</div>
+		</div>
+		<div class="menu1_button mouse_pointer" onclick="menu_1();" aria-hidden="true">
+			<i id="angle-down1" class="fa fa-angle-down"></i>
+		</div>
+	</div>
+
+	<div class="select_location">
+		<i id="angle-down1" class="fa fa-angle-up" onclick="menu_1();" aria-hidden="true"></i>
+
+		<i class="fa fa-3x fa-building-o"><span class="icon_sub"> 세종이노센터</span></i>
+
+		<i class="fa fa-3x fa-building-o"><span class="fa icon_sub"> 학술정보원</span></i>
+
+		<i class="fa fa-3x fa-building-o"><span class="fa icon_sub"> 광개토관</span></i>
+
+		<i class="fa fa-3x fa-building-o"><span class="icon_sub"> 율곡관</span></i>
+
+		
+	</div>
+</body>
+<script src="../static/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="../static/vendor/bootstrap/js/popper.js"></script>
+<script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../static/vendor/select2/select2.min.js"></script>
+<script src="../static/js/modal.js"></script>
+<script src="../static/js/main.js"></script>
+<script src="../static/js/board.js"></script>
+<script src="../static/js/function.js"></script>
+
+</html>
