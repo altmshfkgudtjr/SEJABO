@@ -19,10 +19,10 @@ function addElement () {
    var box_not_done = [];
    var number = 30;            //최소단위 지정 (작을수록 시간이 오래걸림)
    var x0y0, x1y0, x0y1, x1,y1;
-   var min_width = (window_width/100)*2;            //가로 시작 지점
-   var min_height = (window_width/100)*3.5;         //세로 시작 지점
-   var max_width = window_width - (window_width/100)*3;   //가로 끝 지점
-   var max_height = window_height - ((window_width/100)*3);   //세로 끝 지점
+   var min_width = 30;            //가로 시작 지점
+   var min_height = 60;         //세로 시작 지점
+   var max_width = window_width - 30;   //가로 끝 지점
+   var max_height = window_height - 90;   //세로 끝 지점
    var n = 1;
    for(var i=0; i<box_list.length; i++){
       box = box_list[i];
