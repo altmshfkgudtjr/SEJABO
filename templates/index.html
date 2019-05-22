@@ -30,13 +30,32 @@
 					<div id="information">
 						<span class="login100-form-title">
 							우리들의 대자보<br>SEJABO
-						</span>
+						</span><br><br>
 						<img class="sejong_logo" src="../static/img/SejaboLOGO.png">
 						<br>
 						<br>
 						<br>
 					</div>
-					<i id="explain_gobutton" class="fa fa-angle-right"></i>
+					<div id="information2"  class="none_display">
+						<span class="login100-form-title">
+							SEJABO가 뭐죠?
+						</span>
+						<br><br><br>
+						<span class="login100-form-body">
+							온라인 대자보 시스템!
+						</span>
+						<br><br>
+						<span class="login100-form-body">
+							누구나 자유롭게!
+						</span>
+						<br><br>
+						<span class="login100-form-body">
+							사용자 의견 반영!
+						</span>
+						<br><br><br>
+					</div>
+					<i id="explain_gobutton1" class="fa fa-angle-left none_display"></i>
+					<i id="explain_gobutton2" class="fa fa-angle-right"></i>
 					<button id="myBtn">살펴보다</button>
 				</div>
 			</div>
@@ -48,11 +67,11 @@
 	<div id="menu_1" class="menu_1">
 		<div class="login_test">
 				<span class="login100-form-title" style="color: black;">
-					Login
+					로그인
 				</span>
-		
+				<br><br><br>
 				<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-					<input class="input100" type="text" name="email" placeholder="Student Number">
+					<input class="input100" type="text" name="email" placeholder="학번/사번 입력">
 					<span class="focus-input100"></span>
 					<span class="symbol-input100">
 						<span class="lnr lnr-envelope"></span>
@@ -60,7 +79,7 @@
 				</div>
 		
 				<div class="wrap-input100 validate-input" data-validate="Password is required">
-					<input class="input100" type="password" name="pass" placeholder="Password">
+					<input class="input100" type="password" name="pass" placeholder="비밀번호 입력">
 					<span class="focus-input100"></span>
 					<span class="symbol-input100">
 						<span class="lnr lnr-lock"></span>
@@ -69,29 +88,23 @@
 		
 				<div class="container-login100-form-btn">
 					<button class="login100-form-btn">
-						Login
+						확인
 					</button>
 				</div>
 		</div>
 		<div class="menu1_button mouse_pointer" onclick="menu_1();" aria-hidden="true">
-			<i id="angle-down1" class="fa fa-angle-down"></i>
+			<i id="angle-down" class="fa fa-angle-down"></i>
 		</div>
 	</div>
 
-	<div class="select_location">
-		<div class="menu1_button mouse_pointer" onclick="menu_1();" aria-hidden="true">
-			<i id="angle-down1" class="fa fa-angle-up"></i>
+	<div id="select_location" class="select_location">
+		<div class="select_location_button mouse_pointer" onclick="select_location();" aria-hidden="true">
+			<i id="angle-up" class="fa fa-angle-up"></i>
 		</div>
-
-		<i class="fa fa-3x fa-building-o"><span class="icon_sub"> 세종이노센터</span></i>
-
-		<i class="fa fa-3x fa-building-o"><span class="fa icon_sub"> 학술정보원</span></i>
-
-		<i class="fa fa-3x fa-building-o"><span class="fa icon_sub"> 광개토관</span></i>
-
-		<i class="fa fa-3x fa-building-o"><span class="icon_sub"> 율곡관</span></i>
-
-		
+		<div class="mouse_pointer icon_sub_button"><i class="fa fa-3x fa-building-o"><span class="fa icon_sub"> 세종이노센터</span></i></div>
+		<div class="mouse_pointer icon_sub_button"><i class="fa fa-3x fa-building-o"><span class="fa icon_sub"> 학술정보원</span></i></div>
+		<div class="mouse_pointer icon_sub_button"><i class="fa fa-3x fa-building-o"><span class="fa icon_sub"> 광개토관</span></i></div>
+		<div class="mouse_pointer icon_sub_button"><i class="fa fa-3x fa-building-o"><span class="fa icon_sub"> 율곡관</span></i></div>
 	</div>
 </body>
 <script src="../static/vendor/jquery/jquery-3.2.1.min.js"></script>
