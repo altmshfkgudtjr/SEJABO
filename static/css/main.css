@@ -47,7 +47,7 @@ body, html {
   font-family: Poppins-Regular, sans-serif;
   background-image: linear-gradient(-45deg, #F5D0A9, #A9F5BC, #CED8F6, #F5A9D0);
   z-index: -1;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 /*부분 요소 스타일 템플릿 디자인을 유지*/
@@ -147,6 +147,24 @@ iframe {
 	border: none !important;
 }
 
+/*------------------------------------------------------------------------*/
+/*BOX css*/
+.box_absolute {position: absolute;}
+.box_boxShadow {box-shadow: 0 0 3px #eeeeee;}
+.box_borderRadius {border-radius: 10px 10px;}
+.box_backgroundSize {background-size: cover;}
+.box_textShadow {text-shadow: 0 1px 2px #222222;}
+.box_fontWeight {font-weight: lighter}
+.box_overflow {overflow: hidden;}
+.box_wordBreak {word-break: break-all;}
+.box_color {color: #444444;}
+.box_fa30 {font-size: 30px;}
+.box_fa40 {font-size: 38px;}
+.box_fa60 {font-size: 60px;}
+.box_fa80 {font-size: 80px;}
+/*------------------------------------------------------------------------*/
+
+
 
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
@@ -176,7 +194,7 @@ iframe {
 
 .container-login100 {
   width: 100%;  
-  min-height: 100vh;
+  height: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -210,8 +228,12 @@ iframe {
 }
 
 .wrap-login100 {
-  position: relative;
+  position: absolute;
   width: 450px;
+  height: 590px;
+  left:50%;
+  top:50%;
+  transform: translate(-50%, -50%);
   background-color: rgba(247,247,247,1);
   box-shadow: 0 0 10px #aaaaaa;
   border-radius: 12px;
@@ -220,6 +242,15 @@ iframe {
     padding-right: 50px;
     padding-top: 77px;
     padding-bottom: 30px;
+}
+
+#information, #information2{
+  position: absolute;
+  width: 410px;
+  height: 480px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 
@@ -244,25 +275,46 @@ iframe {
   line-height: 1.4;
   text-transform: uppercase;
   text-align: center;
-  width: 100%;
+  width: 80%;
+  margin-left: 10%;
+  padding: 5px;
   display: block;
   transition: 0.7s;
-
+  cursor: pointer;
+}
+.login100-form-title2 {
+  font-family: Raleway-Black;
+  font-size: 40px;
+  color: #404040;
+  line-height: 1.4;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+.login100-form-title:hover {
+  border-radius: 8px 8px;
+  transform: scale(1.1, 1.1);
+  box-shadow: 0 0 8px #bbbbbb;
+  background-color: #fefefe;
 }
 .login100-form-body {
   font-family: Raleway-Black;
   font-size: 30px;
+  width: 78%;
+  margin-left: 11%; 
+  padding: 3px;
+  line-height: 1.8em;
   color: #404040;
   text-transform: uppercase;
   text-align: center;
-  width: 100%;
   display: block;
   cursor: pointer;
   transition: 0.7s;
 }
 .login100-form-body:hover {
   border-radius: 8px 8px;
-  transform: scale(1.02, 1.02);
+  transform: scale(1.09, 1.09);
   box-shadow: 0 0 8px #bbbbbb;
   background-color: #fefefe;
 }
@@ -281,12 +333,11 @@ margin-bottom: 16px;
   font-size: 18px;
   line-height: 1.2;
   color: #686868;
-
   display: block;
   width: 100%;
   background: #e6e6e6;
   height: 62px;
-  border-radius: 3px;
+  border-radius: 8px 8px;
   padding: 0 30px 0 65px;
 }
 
@@ -431,7 +482,7 @@ margin-bottom: 16px;
 
   width: 100%;
   height: 62px;
-  border-radius: 3px;
+  border-radius: 8px 8px;
   background-color: rgba(100,100,100,0.9);
   display: -webkit-box;
   display: -webkit-flex;
@@ -536,15 +587,18 @@ margin-bottom: 16px;
 #myBtn
 {
     display: block;
-    position: relative;
-    width: 100%;
+    position: absolute;
+    bottom: 7%;
+    padding: 10px 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 80%;
     height: 50px;
     border-radius: 8px 8px;
     font-weight: bold;
-    margin: auto;
     color: #333333;
     font-size: 20px;
-    transition: 0.7s;
+    transition: 0.4s;
 }
 #myBtn:hover {
     box-shadow: 0 0 8px #888888;
@@ -632,14 +686,13 @@ margin-bottom: 16px;
     display: block;
     float: right;
 }
-        .modal {
-            background-color: white;
-            overflow: hidden;
-            display: block; 
-            position: fixed;
-            z-index: 1000; 
-            overflow: hidden; 
-        }
+.modal {
+    background-color: white;
+    overflow: hidden;
+    display: block; 
+    position: fixed;
+    z-index: 1000; 
+}
 .modal-content
 {
     background-color: white;
@@ -650,6 +703,23 @@ margin-bottom: 16px;
 }
 .modal_display_none{
     display: none;
+}
+
+.modal2 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: rgba(100,100,100,0.3);
+    position: fixed;
+    display: block;
+}
+.modal2-content {
+    z-index: 1050; 
+    background: #eeeeee;
+    border-radius: 8px 8px;
+    box-shadow: 0 0 8px #888888;
+
 }
 
 .board1 {
@@ -680,6 +750,8 @@ margin-bottom: 16px;
     top: -72%;
     border-radius: 0px 0px 8px 8px;
     transition: top 0.3s;
+    transition-timing-function: ease;
+    transition-delay: 0.1s;
 }
 .menu_1_open
 {
@@ -720,13 +792,14 @@ margin-bottom: 16px;
     z-index:300;
     position: absolute;
     bottom: -10%;
-    width: 65%;
+    min-width: 720px;
     height: 13%;
     left:50%;
     transform: translate(-50%, 0);
     border-radius: 8px 8px 0 0;
     transition: bottom 0.2s;
-    transition-timing-function: linear;
+    transition-timing-function: ease-out;
+    transition-delay: 0.1s;
     box-shadow: 0 0 8px #888888;
     text-align: center;
     overflow-y: hidden;
@@ -746,13 +819,14 @@ margin-bottom: 16px;
 .fa-angle-up
 {
   position: absolute;
-  top: -2%;
+  top: -5%;
   margin-top: 0px;
   display:block;
   font-size: 30px;
   font-weight: bold;
   text-align: center;
   left: 50%;
+  transform: translate(-50%, 0);
   transition: transform 1s;
 }
 .fa-angle-down
@@ -764,17 +838,17 @@ margin-bottom: 16px;
   font-weight: bold;
   text-align: center;
   left: 50%;
+  transform: translate(-50%, 0);
   transition: transform 1s;
   bottom: 0%;
 }
 .fa-angle-rotate
 {
-  transform: rotateX(150deg);
+  transform: rotateX(150deg) translate(-50%, 0);
 }
 .icon_sub_button {
     display: inline-block;
-    margin-top: 10px;
-    padding: 8px;
+    margin-top: 20px;
     transition: 0.7s;
 }
 .icon_sub_button:hover {
@@ -792,6 +866,8 @@ margin-bottom: 16px;
 {
   cursor:pointer;
 }
+
+
 
 [id^=box]
 {
