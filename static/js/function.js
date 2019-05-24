@@ -16,33 +16,11 @@ function menu_1()
     }
 }
 
-
-var select_location_cnt = 0;
-function select_location()
-{
-    if(select_location_cnt == 0)
-    {
-        $("#select_location").addClass("select_location_open");
-        $("#angle-up").addClass("fa-angle-rotate");
-        select_location_cnt += 1;
-    }
-    
-    else
-    {
-        $("#select_location").removeClass("select_location_open");
-        $("#angle-up").removeClass("fa-angle-rotate");
-        select_location_cnt = 0;
-    }
-}
-
 $('#board1').click(function(e) 
 {
    $("#menu_1").removeClass("menu_1_open");
    $("#angle-down").removeClass("fa-angle-rotate");
    menu_cnt = 0;
-   $("#select_location").removeClass("select_location_open");
-   $("#angle-up").removeClass("fa-angle-rotate");
-   select_location_cnt = 0;
 });
 
 

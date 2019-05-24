@@ -151,7 +151,7 @@ iframe {
 /*BOX css*/
 .box_absolute {position: absolute;}
 .box_boxShadow {box-shadow: 0 0 3px #eeeeee;}
-.box_borderRadius {border-radius: 10px 10px;}
+.box_borderRadius {border-radius: 6px;}
 .box_backgroundSize {background-size: cover;}
 .box_textShadow {text-shadow: 0 1px 2px #222222;}
 .box_fontWeight {font-weight: lighter}
@@ -236,7 +236,7 @@ iframe {
   transform: translate(-50%, -50%);
   background-color: rgba(247,247,247,1);
   box-shadow: 0 0 10px #aaaaaa;
-  border-radius: 12px;
+  border-radius: 6px;
   overflow: hidden;
     padding-left: 50px;
     padding-right: 50px;
@@ -293,7 +293,7 @@ iframe {
   display: block;
 }
 .login100-form-title:hover {
-  border-radius: 8px 8px;
+  border-radius: 6px;
   transform: scale(1.1, 1.1);
   box-shadow: 0 0 8px #bbbbbb;
   background-color: #fefefe;
@@ -313,7 +313,7 @@ iframe {
   transition: 0.7s;
 }
 .login100-form-body:hover {
-  border-radius: 8px 8px;
+  border-radius: 6px;
   transform: scale(1.09, 1.09);
   box-shadow: 0 0 8px #bbbbbb;
   background-color: #fefefe;
@@ -337,9 +337,10 @@ margin-bottom: 16px;
   width: 100%;
   background: #e6e6e6;
   height: 62px;
-  border-radius: 8px 8px;
+  border-radius: 6px;
   padding: 0 30px 0 65px;
 }
+
 
 
 /*------------------------------------------------------------------
@@ -347,7 +348,7 @@ margin-bottom: 16px;
 .focus-input100 {
   display: block;
   position: absolute;
-  border-radius: 3px;
+  border-radius: 6px;
   bottom: 0;
   left: 0;
   z-index: -1;
@@ -442,7 +443,7 @@ margin-bottom: 16px;
   position: absolute;
   width: 18px;
   height: 18px;
-  border-radius: 3px;
+  border-radius: 6px;
   background: #fff;
   border: 2px solid #d33f8d;
   left: 0;
@@ -482,7 +483,7 @@ margin-bottom: 16px;
 
   width: 100%;
   height: 62px;
-  border-radius: 8px 8px;
+  border-radius: 6px;
   background-color: rgba(100,100,100,0.9);
   display: -webkit-box;
   display: -webkit-flex;
@@ -520,7 +521,7 @@ margin-bottom: 16px;
   align-items: center;
   width: calc((100% - 10px) / 2);
   height: 40px;
-  border-radius: 3px;
+  border-radius: 6px;
   border: 1px solid #e6e6e6;
   background-color: #fff;
 
@@ -594,7 +595,7 @@ margin-bottom: 16px;
     transform: translate(-50%, 0);
     width: 80%;
     height: 50px;
-    border-radius: 8px 8px;
+    border-radius: 6px;
     font-weight: bold;
     color: #333333;
     font-size: 20px;
@@ -673,7 +674,7 @@ margin-bottom: 16px;
     width: 200px;
     display: block;
     margin: auto;
-    border-radius: 8px 8px;
+    border-radius: 6px;
     transition: 0.6s;
 }
 .sejong_logo:hover {
@@ -717,7 +718,7 @@ margin-bottom: 16px;
 .modal2-content {
     z-index: 1050; 
     background: #eeeeee;
-    border-radius: 8px 8px;
+    border-radius: 6px;
     box-shadow: 0 0 8px #888888;
 
 }
@@ -732,7 +733,7 @@ margin-bottom: 16px;
       top: 2.5%;
       left: 0.5%;
       box-shadow: 0px 0px 8px #888888;
-      border-radius: 8px 8px;
+      border-radius: 6px;
       z-index: 100;
 }
 
@@ -748,7 +749,7 @@ margin-bottom: 16px;
     height: 75%;
     margin:auto;
     top: -72%;
-    border-radius: 0px 0px 8px 8px;
+    border-radius: 0px 0px 6px 6px;
     transition: top 0.3s;
     transition-timing-function: ease;
     transition-delay: 0.1s;
@@ -763,7 +764,7 @@ margin-bottom: 16px;
     bottom: 0;
     width: 100%;
     height: 10%;
-    transform: translate(-2.2%, 0);
+    transform: translate(-3%, 0);
 }
 .select_location_button {
     position: relative;
@@ -771,6 +772,24 @@ margin-bottom: 16px;
     width: 106%;
     height: 25%;
     transform: translate(-3%, 0);
+}
+
+.search_box {
+    position: absolute;
+    bottom: 0;
+    transform: translate(10%, 0);
+}
+.search_input {
+    width: 80%;
+    font-size: 30px;
+    color: #444444;
+    background-color: rgba(240, 240, 240, 1);
+    padding-bottom: 5px;
+}
+.search_line {
+    position: relative;
+    border-top : 2px solid rgba(200, 200, 200, 1);
+    width: 80%;
 }
 
 .login_test
@@ -783,31 +802,6 @@ margin-bottom: 16px;
   top: 8%;
 }
 
-.select_location
-{
-  background-color: rgba(240, 240, 240, 1);
-  box-shadow: 0px 3px 8px darkgrey;
-    padding:5px 25px 0px 25px;
-    border:0px;
-    z-index:300;
-    position: absolute;
-    bottom: -10%;
-    min-width: 720px;
-    height: 13%;
-    left:50%;
-    transform: translate(-50%, 0);
-    border-radius: 8px 8px 0 0;
-    transition: bottom 0.2s;
-    transition-timing-function: ease-out;
-    transition-delay: 0.1s;
-    box-shadow: 0 0 8px #888888;
-    text-align: center;
-    overflow-y: hidden;
-}
-.select_location_open
-{
-    bottom: 0px;
-}
 
 .fa
 {
@@ -852,7 +846,7 @@ margin-bottom: 16px;
     transition: 0.7s;
 }
 .icon_sub_button:hover {
-    border-radius: 8px 8px;
+    border-radius: 6px;
     box-shadow: 0 0 10px #bbbbbb;
     transform: scale(1.1, 1.1);
 }

@@ -34,7 +34,6 @@ function addElement () {
       x1y0 = [min_width+w, min_height];
       x0y1 = [min_width, min_height+h];
       x1y1 = [min_width+w, min_height+h];
-      console.log(x0y0, x1y0, x0y1, x1y1);
       /*----------------------------------------------*/
       //만약 첫번째의, div가 들어왔을 때,
       if (!box_done.length){
