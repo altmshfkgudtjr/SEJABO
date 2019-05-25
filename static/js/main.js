@@ -44,3 +44,11 @@
     
 
 })(jQuery);
+
+
+$('#fa-search').mouseover(function(){
+    $('#search_bar').addClass('search_bar_hover');
+});
+$('#fa-search').mouseout(function(){
+    $('#search_bar').removeClass('search_bar_hover');
+});

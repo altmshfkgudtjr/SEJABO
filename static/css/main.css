@@ -205,10 +205,6 @@ iframe {
   align-items: center;
   padding: 15px;
   position: relative;
-  /*background-image: url('/static/img/img-01.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;*/
   background-image: linear-gradient(-45deg, #F5D0A9, #A9F5BC, #CED8F6, #F5A9D0); 
   z-index: 1;
 }
@@ -231,9 +227,7 @@ iframe {
   position: absolute;
   width: 450px;
   height: 590px;
-  left:50%;
-  top:50%;
-  transform: translate(-50%, -50%);
+  margin: auto;
   background-color: rgba(247,247,247,1);
   box-shadow: 0 0 10px #aaaaaa;
   border-radius: 6px;
@@ -242,16 +236,14 @@ iframe {
     padding-right: 50px;
     padding-top: 77px;
     padding-bottom: 30px;
+    z-index: 1;
+    transition: 0.5s;
 }
 
-#information, #information2{
-  position: absolute;
-  width: 410px;
-  height: 480px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+#information1, #information2{
+  margin: auto;
 }
+
 
 
 
@@ -275,12 +267,9 @@ iframe {
   line-height: 1.4;
   text-transform: uppercase;
   text-align: center;
-  width: 80%;
-  margin-left: 10%;
   padding: 5px;
-  display: block;
   transition: 0.7s;
-  cursor: pointer;
+  cursor: default;
 }
 .login100-form-title2 {
   font-family: Raleway-Black;
@@ -301,6 +290,7 @@ iframe {
 .login100-form-body {
   font-family: Raleway-Black;
   font-size: 30px;
+  font-weight: bold;
   width: 78%;
   margin-left: 11%; 
   padding: 3px;
@@ -309,7 +299,7 @@ iframe {
   text-transform: uppercase;
   text-align: center;
   display: block;
-  cursor: pointer;
+  cursor: default;
   transition: 0.7s;
 }
 .login100-form-body:hover {
@@ -335,7 +325,7 @@ margin-bottom: 16px;
   color: #686868;
   display: block;
   width: 100%;
-  background: #e6e6e6;
+  background: rgba(240,240,240,1);
   height: 62px;
   border-radius: 6px;
   padding: 0 30px 0 65px;
@@ -484,7 +474,7 @@ margin-bottom: 16px;
   width: 100%;
   height: 62px;
   border-radius: 6px;
-  background-color: rgba(100,100,100,0.9);
+  background-color: rgba(170,170,170,1);
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -501,7 +491,7 @@ margin-bottom: 16px;
 }
 
 .login100-form-btn:hover {
-  background: #333333;
+  background: rgba(130,130,130,1);
 }
 
 /*------------------------------------------------------------------
@@ -557,7 +547,7 @@ margin-bottom: 16px;
 .btn-google:hover {
   border-color: #d33f8d;
 }
-#explain_gobutton1 {
+#explain_gobutton2 {
     position: absolute;
     top:50%;
     font-size: 45px;
@@ -567,11 +557,11 @@ margin-bottom: 16px;
     cursor: pointer;
     transition: 0.4s;
 }
-#explain_gobutton1:hover {
+#explain_gobutton2:hover {
   color: #333333;
   text-shadow: 0 0 6px #bbbbbb;
 }
-#explain_gobutton2 {
+#explain_gobutton1 {
     position: absolute;
     top:50%;
     font-size: 45px;
@@ -581,11 +571,11 @@ margin-bottom: 16px;
     cursor: pointer;
     transition: 0.4s;
 }
-#explain_gobutton2:hover {
+#explain_gobutton1:hover {
   color: #333333;
   text-shadow: 0 0 6px #bbbbbb;
 }
-#myBtn
+.go_main_Btn
 {
     display: block;
     position: absolute;
@@ -601,7 +591,7 @@ margin-bottom: 16px;
     font-size: 20px;
     transition: 0.4s;
 }
-#myBtn:hover {
+.go_main_Btn:hover {
     box-shadow: 0 0 8px #888888;
 }
 
@@ -668,6 +658,13 @@ margin-bottom: 16px;
 
 .none_display{
     display: none;
+    opacity: 0;
+    transition: opacity 1s;
+}
+.show_display
+{
+    opacity: 1;
+    transition: opacity 1s;
 }
 
 .sejong_logo{
@@ -687,12 +684,19 @@ margin-bottom: 16px;
     display: block;
     float: right;
 }
+#loading_modal
+{
+  z-index: 900;
+}
+#main_modal
+{
+  z-index: 1000;
+}
 .modal {
     background-color: white;
     overflow: hidden;
     display: block; 
     position: fixed;
-    z-index: 1000; 
 }
 .modal-content
 {
@@ -706,22 +710,6 @@ margin-bottom: 16px;
     display: none;
 }
 
-.modal2 {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-    background-color: rgba(100,100,100,0.3);
-    position: fixed;
-    display: block;
-}
-.modal2-content {
-    z-index: 1050; 
-    background: #eeeeee;
-    border-radius: 6px;
-    box-shadow: 0 0 8px #888888;
-
-}
 
 .board1 {
   background-color: white;
@@ -729,8 +717,8 @@ margin-bottom: 16px;
       background-size: cover;
       position: absolute;
       width: 99%;
-      height: 96%;
-      top: 2.5%;
+      height: 95%;
+      top: 4%;
       left: 0.5%;
       box-shadow: 0px 0px 8px #888888;
       border-radius: 6px;
@@ -739,39 +727,95 @@ margin-bottom: 16px;
 
 .menu_1
 {
-    background-color: rgba(240, 240, 240, 1);
+    background-color: rgba(248, 248, 248, 1);
     box-shadow: 0px 3px 8px darkgrey;
     padding:25px 25px 0px 25px;
     border:0px;
     position: relative;
-    z-index:900;
+    z-index:800;
     width: 80%;
-    height: 75%;
+    height: 60%;
     margin:auto;
-    top: -72%;
+    top: -57%;
     border-radius: 0px 0px 6px 6px;
     transition: top 0.3s;
     transition-timing-function: ease;
     transition-delay: 0.1s;
 }
+
 .menu_1_open
 {
     top:0px;
 }
 
+
+.search_bar{
+  position: absolute;
+  bottom: 11%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  transition: all 1s;
+  width: 70%;
+  height: 68px;
+  background: rgba(0,0,0,0);
+  box-sizing: border-box;
+  border-radius: 30px;
+  border: 4px solid rgba(170, 170, 170, 1);
+  padding: 5px;
+  transition: 0.4s;
+}
+input[type="search"]{
+  position: absolute;
+  background-color: rgba(240,240,240, 1);
+  top: 0;
+  left: 0;
+  width: 100%;;
+  height: 60px;
+  line-height: 30px;
+  outline: 0;
+  border: 0;
+  display: block;
+  font-size: 18px;
+  border-radius: 25px;
+  padding: 0 60px;
+  text-align: center;
+}
+.fa-search{
+  box-sizing: border-box;
+  padding: 10px;
+  width: 63px;
+  height: 63px;
+  position: absolute;
+  top: -1px;
+  padding-top: 15px;
+  right: -4px;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+  font-size: 25px;
+  transition: all 1s;
+  background-color: rgba(170, 170, 170, 1);
+  cursor: pointer;
+}
+
+.fa-search:hover {
+  background-color: rgba(130,130,130, 1);
+  color: white;
+}
+.search_bar_hover {
+    border: 4px solid rgba(130,130,130,1);
+}
+
 .menu1_button {
     position: absolute;
+    left: 0;
     bottom: 0;
     width: 100%;
     height: 10%;
-    transform: translate(-3%, 0);
 }
-.select_location_button {
-    position: relative;
-    top: 0;
-    width: 106%;
-    height: 25%;
-    transform: translate(-3%, 0);
+.menu1_button:hover .fa-angle-down {
+    color: white;
+    text-shadow: 0 0 2px #333333;
 }
 
 .search_box {
@@ -802,27 +846,6 @@ margin-bottom: 16px;
   top: 8%;
 }
 
-
-.fa
-{
-    text-align: center;
-    color: black;
-    margin: 0 10px;
-}
-
-.fa-angle-up
-{
-  position: absolute;
-  top: -5%;
-  margin-top: 0px;
-  display:block;
-  font-size: 30px;
-  font-weight: bold;
-  text-align: center;
-  left: 50%;
-  transform: translate(-50%, 0);
-  transition: transform 1s;
-}
 .fa-angle-down
 {
   position: absolute;
@@ -861,6 +884,29 @@ margin-bottom: 16px;
   cursor:pointer;
 }
 
+.new_page {
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(248,248,248, 1);
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0px 0px 8px darkgrey;
+    z-index: 300;
+    color: #333333;
+    text-align: center;
+    cursor: pointer;
+    padding-top: 7px;
+}
+.fa-redo-alt {
+    font-size: 23px;
+}
+.new_page:hover {
+    color: white;
+    text-shadow: 0 0 2px #333333;
+}
 
 
 [id^=box]
@@ -876,3 +922,47 @@ margin-bottom: 16px;
   transform: scale(1.1, 1.1);
 }
 
+@media screen and (max-width: 1000px) {
+  .wrap-login100 {
+    position: absolute;
+    width: 350px;
+    height: 590px;
+    margin: auto;
+    background-color: rgba(247,247,247,1);
+    box-shadow: 0 0 10px #aaaaaa;
+    border-radius: 6px;
+    overflow: hidden;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 77px;
+      padding-bottom: 30px;
+  }
+
+  .login100-form-title {
+    font-family: Raleway-Black;
+    font-size: 30px;
+    color: #404040;
+    line-height: 1.4;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 5px;
+    transition: 0.7s;
+    cursor: pointer;
+  }
+
+  .login100-form-body {
+    font-family: Raleway-Black;
+    font-size: 27px;
+    font-weight: bold;
+    width: 78%;
+    margin-left: 11%; 
+    padding: 3px;
+    line-height: 1.8em;
+    color: #404040;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    transition: 0.7s;
+  }
+}

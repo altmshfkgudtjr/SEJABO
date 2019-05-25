@@ -6,8 +6,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="icon" type="image/png" href="../static/img/icons/favicon.ico"/>
+	<meta name="theme-color" content="#c6f3d5">
 
+	<link rel="icon" type="image/png" href="../static/img/icons/favicon.ico"/>
 	
 	<link rel="stylesheet" type="text/css" href="../static/vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -16,50 +17,89 @@
 	<link rel="stylesheet" type="text/css" href="../static/vendor/css-hamburgers/hamburgers.min.css">
 	<link rel="stylesheet" type="text/css" href="../static/vendor/select2/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/loading.css">
+	<link rel="stylesheet" href="../static/css/magic/dist/magic.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	
+	
 </head>
 
 <body>
 	<!-- The Modal -->
-	<div id="myModal" class="modal">
-
-		<!-- Modal content -->
+	<div id="main_modal" class="modal">
 		<div class="modal-content">
 			<span class="close"></span>
 			<div class="container-login100">
-				<div class="wrap-login100">
-					<div id="information" class="info">
-						<span class="login100-form-title">
+				<div id="main_modal_content" class="wrap-login100">
+					<div id="information1" class="info show_display">
+						<div class="login100-form-title">
 							우리들의 대자보<br>SEJABO
-						</span><br><br>
-						<img class="sejong_logo" src="../static/img/SejaboLOGO.png">
+						</div>
+						<br>
+						<br>
+						<img id="draggable-revert" class="sejong_logo" src="../static/img/SejaboLOGO.png">
 						<br>
 						<br>
 						<br>
 					</div>
 					<div id="information2"  class="info2 none_display">
-						<span class="login100-form-title">
-							SEJABO가 뭐죠?
-						</span>
-						<br><br><br>
+						<div class="login100-form-title">
+							SEJABO
+						</div>
+						<hr>
+						<br>
 						<div class="login100-form-body">
-							설명 1
+							<span style="color: red">언제</span>  <span style="color: purple">어디</span>서나!
 						</div>
 						<br>
 						<div class="login100-form-body">
-							설명 2
+							<span style="color: skyblue">홍보</span>를 <span style="color: green">쉽게!</span>
 						</div>
 						<br>
 						<div class="login100-form-body">
-							설명 3
+								<span style="color: orange">실시간</span>으로!
 						</div>
 					</div>
-					<i id="explain_gobutton1" class="fa fa-angle-left none_display"></i>
-					<i id="explain_gobutton2" class="fa fa-angle-right"></i>
-					<button id="myBtn">살펴보다</button>
+					<i id="explain_gobutton1" class="fa fa-angle-right"></i>
+					<i id="explain_gobutton2" class="fa fa-angle-left none_display"></i>	
+					<button id="close_modal_btn" class="go_main_Btn">살펴보다</button>
 				</div>
+
+				<div class="cssload-loader-inner">
+						<div class="cssload-cssload-loader-line-wrap-wrap">
+							<div class="cssload-loader-line-wrap"></div>
+						</div>
+						<div class="cssload-cssload-loader-line-wrap-wrap">
+							<div class="cssload-loader-line-wrap"></div>
+						</div>
+						<div class="cssload-cssload-loader-line-wrap-wrap">
+							<div class="cssload-loader-line-wrap"></div>
+						</div>
+						<div class="cssload-cssload-loader-line-wrap-wrap">
+							<div class="cssload-loader-line-wrap"></div>
+						</div>
+						<div class="cssload-cssload-loader-line-wrap-wrap">
+							<div class="cssload-loader-line-wrap"></div>
+						</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
+
+
+	<!--
+	<div id="loading_modal" class="modal">
+		<div class="modal-content">
+			<span class="close"></span>
+			<div class="container-login100">
+					
+			</div>
+		</div>
+	</div>
+	-->
+
+
 
 	<div id="board1" class="board1"></div>
 	<div id="select">
@@ -69,7 +109,7 @@
 				<span class="login100-form-title2" style="color: black;">
 					로그인
 				</span>
-				<br><br><br>
+				<br>
 				<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
 					<input class="input100" type="text" name="email" placeholder="학번/사번 입력">
 					<span class="focus-input100"></span>
@@ -92,15 +132,16 @@
 					</button>
 				</div>
 		</div>
-		<div class="serach_box">
-			<input type="text" class="search_input" placeholder="입력해주세요!" autofocus name="search">
-			<div class="search_line"></div>
-		</div>
+		<form action="" id="search_bar" class="search_bar">
+			<input type="search" placeholder="찾고싶은 것이 있나요?">
+			<i id="fa-search" class="fa fa-search"></i>
+		</form>
 		<div class="menu1_button mouse_pointer" onclick="menu_1();" aria-hidden="true">
 			<i id="angle-down" class="fa fa-angle-down"></i>
 		</div>
 	</div>
-	<div id="new_page">
+	<div id="new_page" class="new_page">
+		<i id="fa-redo-alt" class="fas fa-redo-alt"></i>
 	</div>
 	<!--
 		<div class="mouse_pointer icon_sub_button"><i class="fa fa-3x fa-building-o"><span class="fa icon_sub"> 세종이노센터</span></i></div>
