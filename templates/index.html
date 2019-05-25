@@ -8,9 +8,11 @@
 
 	<meta name="theme-color" content="#c6f3d5">
 
-	<link rel="icon" type="image/png" href="../static/img/icons/favicon.ico"/>
+	<link rel="icon" type="image/png" href="../static/img/icons/favicon.ico" />
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 	
-	<link rel="stylesheet" type="text/css" href="../static/vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../static/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 	<link rel="stylesheet" type="text/css" href="../static/vendor/animate/animate.css">
@@ -20,12 +22,120 @@
 	<link rel="stylesheet" type="text/css" href="../static/css/loading.css">
 	<link rel="stylesheet" href="../static/css/magic/dist/magic.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-	
-	
+
+
 </head>
 
 <body>
-	<!-- The Modal -->
+	<button id="location_now" type="button" class="btn btn-primary location_now"
+		onclick="location_now();">세종이노센터</button>
+	
+		<button id="new_page" type="button" class="btn btn-info new_page" onclick="refleshPage();">새로고침</button>
+
+
+		<button id="search_button" type="button" class="btn btn-secondary search_button" onclick="">검색</button>
+
+
+		<button id="login_button" type="button" class="btn btn-secondary login_button">로그인</button>
+	
+		<div class="board-title">
+			SEJABO
+		</div>
+
+	<button id="modal_login_btn" class="btn btn-warning" onclick="document.getElementById('id02').style.display='block'">검색</button>
+
+	<div id="location_box" class="location_box">
+		<button id="DYAI" type="button" class="btn btn-primary location_button">세종이노센터</button>
+		<button id="DCG" type="button" class="btn btn-success location_button">학술정보원</button>
+		<button id="GGTG" type="button" class="btn btn-warning location_button">광개토관</button>
+		<button id="YGG" type="button" class="btn btn-danger location_button">율곡관</button>
+	</div>
+
+	
+
+	<!-- login Modal -->
+	<div id="login_modal" class="login_modal">
+		<!-- Modal content -->
+		<div id="login_modal_content" class="login_modal_content">
+			<span class="login_modal_close">&times;</span>
+			
+			<form class="login100-form validate-form">
+				<span class="login100-form-title p-b-55">
+					Login
+				</span>
+
+				<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid email is required: ex@abc.xyz">
+					<input class="input100" type="text" name="email" placeholder="Email" autocomplete="off">
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<span class="lnr lnr-envelope"></span>
+					</span>
+				</div>
+
+				<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+					<input class="input100" type="password" name="pass" placeholder="Password" autocomplete="off">
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<span class="lnr lnr-lock"></span>
+					</span>
+				</div>
+				
+				<div class="container-login100-form-btn p-t-25">
+					<button class="login100-form-btn">
+						Login
+					</button>
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+	<!-- search Modal -->
+	<div id="search_modal" class="search_modal">
+		<!-- Modal content -->
+		<div id="search_modal_content" class="search_modal_content">
+			<span class="search_modal_close">&times;</span>
+			<i class="fas fa-search"></i>
+			<input type="text" class="search_modal_textbox" placeholder="입력 후 엔터를 쳐주세요.">
+		</div>
+	</div>
+
+	<!-- post Modal -->
+	<div id="post_modal" class="post_modal">
+		<!-- Modal content -->
+		<div id="post_modal_content" class="post_modal_content">
+			<button type="button" class="btn btn-secondary share_button">
+				<i class="fas fa-clone"></i> 보내기</button>
+			<div class="post_top">
+				<div class="post_data_start_title">게시 기간 :</div>
+				<div class="post_data_start">2019-05-13</div>
+				<div class="post_data_between">~</div>
+				<div class="post_data_end">2019-05-20</div>
+			</div>
+			<span class="post_modal_close">&times;</span>
+			<div class="post_content_img">
+				<div class="post_content_img_content"></div>
+			</div>
+			<div class="post_content_text">
+				<div class="profile_img">
+					<!--지우셈-->
+					<img id="idenfication_test" src="" alt="Avatar">
+				</div>
+				<div class="profile_title">테스트 포스트 제목입니다.</div>
+				<div class="profile_hr"></div>
+				<div class="post_content_content">테스트 포스트 글입니다. 하하하하하하하하 내이름은 코난 탐정이죠. 이건 무엇일까나테스트 포스트 글입니다. 하하하하하하하하 내이름은
+					코난 탐정이죠. 이건 무엇일까나테스트 포스트 글입니다. 하하하하하하하하 내이름은 코난 탐정이죠. 이건 무엇일까나테스트 포스트 글입니다. 하하하하하하하하 내이름은 코난 탐정이죠. 이건
+					무엇일까나테스트 포스트 글입니다. 하하하하하하하하 내이름은 코난 탐정이죠. 이건 무엇일까나테스트 포스트 글입니다. 하하하하하하하하 내이름은 코난 탐정이죠. 이건 무엇일까나테스트 포스트
+					글입니다. 하하하하하하하하 내이름은 코난 탐정이죠. 이건 무엇일까나테스트 포스트 글입니다. 하하하하하하하하 내이름은 코난 탐정이죠. 이건 무엇일까나</div>
+				<div class="profile_hr"></div>
+				<div class="post_content_url"><i class="fas fa-external-link-alt"></i> 외부링크 바로가기</div>
+				<div class="post_content_good"><i class="fas fa-thumbs-up"></i></div>
+				<div class="post_content_bad"><i class="fas fa-thumbs-down"></i></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Main Modal -->
 	<div id="main_modal" class="modal">
 		<div class="modal-content">
 			<span class="close"></span>
@@ -42,14 +152,14 @@
 						<br>
 						<br>
 					</div>
-					<div id="information2"  class="info2 none_display">
+					<div id="information2" class="info2 none_display">
 						<div class="login100-form-title">
 							SEJABO
 						</div>
 						<hr>
 						<br>
 						<div class="login100-form-body">
-							<span style="color: red">언제</span>  <span style="color: purple">어디</span>서나!
+							<span style="color: red">언제</span> <span style="color: purple">어디</span>서나!
 						</div>
 						<br>
 						<div class="login100-form-body">
@@ -57,106 +167,55 @@
 						</div>
 						<br>
 						<div class="login100-form-body">
-								<span style="color: orange">실시간</span>으로!
+							<span style="color: orange">실시간</span>으로!
 						</div>
 					</div>
 					<i id="explain_gobutton1" class="fa fa-angle-right"></i>
-					<i id="explain_gobutton2" class="fa fa-angle-left none_display"></i>	
-					<button id="close_modal_btn" class="go_main_Btn">살펴보다</button>
+					<i id="explain_gobutton2" class="fa fa-angle-left none_display"></i>
+					<button id="main_modal_btn" class="go_main_Btn">살펴보다</button>
 				</div>
-
+	
 				<div class="cssload-loader-inner">
-						<div class="cssload-cssload-loader-line-wrap-wrap">
-							<div class="cssload-loader-line-wrap"></div>
-						</div>
-						<div class="cssload-cssload-loader-line-wrap-wrap">
-							<div class="cssload-loader-line-wrap"></div>
-						</div>
-						<div class="cssload-cssload-loader-line-wrap-wrap">
-							<div class="cssload-loader-line-wrap"></div>
-						</div>
-						<div class="cssload-cssload-loader-line-wrap-wrap">
-							<div class="cssload-loader-line-wrap"></div>
-						</div>
-						<div class="cssload-cssload-loader-line-wrap-wrap">
-							<div class="cssload-loader-line-wrap"></div>
-						</div>
+					<div class="cssload-cssload-loader-line-wrap-wrap">
+						<div class="cssload-loader-line-wrap"></div>
+					</div>
+					<div class="cssload-cssload-loader-line-wrap-wrap">
+						<div class="cssload-loader-line-wrap"></div>
+					</div>
+					<div class="cssload-cssload-loader-line-wrap-wrap">
+						<div class="cssload-loader-line-wrap"></div>
+					</div>
+					<div class="cssload-cssload-loader-line-wrap-wrap">
+						<div class="cssload-loader-line-wrap"></div>
+					</div>
+					<div class="cssload-cssload-loader-line-wrap-wrap">
+						<div class="cssload-loader-line-wrap"></div>
+					</div>
 				</div>
-
+	
 			</div>
 		</div>
 	</div>
-
-
-	<!--
-	<div id="loading_modal" class="modal">
-		<div class="modal-content">
-			<span class="close"></span>
-			<div class="container-login100">
-					
-			</div>
-		</div>
-	</div>
-	-->
-
 
 
 	<div id="board1" class="board1"></div>
-	<div id="select">
-	</div>
-	<div id="menu_1" class="menu_1">
-		<div class="login_test">
-				<span class="login100-form-title2" style="color: black;">
-					로그인
-				</span>
-				<br>
-				<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-					<input class="input100" type="text" name="email" placeholder="학번/사번 입력">
-					<span class="focus-input100"></span>
-					<span class="symbol-input100">
-						<span class="lnr lnr-envelope"></span>
-					</span>
-				</div>
-		
-				<div class="wrap-input100 validate-input" data-validate="Password is required">
-					<input class="input100" type="password" name="pass" placeholder="비밀번호 입력">
-					<span class="focus-input100"></span>
-					<span class="symbol-input100">
-						<span class="lnr lnr-lock"></span>
-					</span>
-				</div>
-		
-				<div class="container-login100-form-btn">
-					<button class="login100-form-btn">
-						확인
-					</button>
-				</div>
-		</div>
-		<form action="" id="search_bar" class="search_bar">
-			<input type="search" placeholder="찾고싶은 것이 있나요?">
-			<i id="fa-search" class="fa fa-search"></i>
-		</form>
-		<div class="menu1_button mouse_pointer" onclick="menu_1();" aria-hidden="true">
-			<i id="angle-down" class="fa fa-angle-down"></i>
-		</div>
-	</div>
-	<div id="new_page" class="new_page">
-		<i id="fa-redo-alt" class="fas fa-redo-alt"></i>
-	</div>
-	<!--
-		<div class="mouse_pointer icon_sub_button"><i class="fa fa-3x fa-building-o"><span class="fa icon_sub"> 세종이노센터</span></i></div>
-		<div class="mouse_pointer icon_sub_button"><i class="fa fa-3x fa-building-o"><span class="fa icon_sub"> 학술정보원</span></i></div>
-		<div class="mouse_pointer icon_sub_button"><i class="fa fa-3x fa-building-o"><span class="fa icon_sub"> 광개토관</span></i></div>
-		<div class="mouse_pointer icon_sub_button"><i class="fa fa-3x fa-building-o"><span class="fa icon_sub"> 율곡관</span></i></div>
-	-->
+
+	<div id="post_button" style="position: absolute; width: 100px; height: 100px; left: 50%; top: 50%; z-index: 300;background-color: black; cursor: pointer;"></div>
+	
+
 </body>
-<script src="../static/vendor/jquery/jquery-3.2.1.min.js"></script>
-<script src="../static/vendor/bootstrap/js/popper.js"></script>
-<script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 <script src="../static/vendor/select2/select2.min.js"></script>
 <script src="../static/js/modal.js"></script>
 <script src="../static/js/main.js"></script>
 <script src="../static/js/board.js"></script>
 <script src="../static/js/function.js"></script>
+<script src="../static/js/snackbar.js"></script>
+<script src="../static/js/pnglib.js"></script>
+<script src="../static/js/identicon.js"></script>
+<script src="../static/js/identification.js"></script>
 
 </html>

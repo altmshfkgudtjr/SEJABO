@@ -1,26 +1,28 @@
-//예제리스트
-var receive_list= [{'post_id': '1','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'Pray for SEJABO SuccessfulPray for SEJABO Successful','content':'WebProgramming and Database Project','img_url':'https://do.sejong.ac.kr/attachment/view/940/clipboard.png','view_count':'0','size':'1', 'color': '#EFFBFB'},{'post_id': '2','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'THIS IS SEJABO TEST BENCH. Plz stay on the page','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'3', 'color': '#EFFBFB'},{'post_id': '3','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'Pray for SEJABO Successful This is Third','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'2', 'color': '#E0F8EC'},{'post_id': '4','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'세자보 테스트 데이터 입니다.','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'2', 'color': '#E0F8EC'},{'post_id': '5','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'Pray for SEJABO Successful','content':'WebProgramming and Database Project','img_url':'https://do.sejong.ac.kr/attachment/view/940/clipboard.png','view_count':'0','size':'3', 'color': '#FBEFEF'},{'post_id': '6','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'세자보 테스트 데이터 입니다.','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'1', 'color': '#FBEFEF'},{'post_id': '7','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'Pray for SEJABO Successful','content':'WebProgramming and Database Project','img_url':'https://do.sejong.ac.kr/attachment/view/940/clipboard.png','view_count':'0','size':'4', 'color': '#ECE0F8'},{'post_id': '8','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'세자보 테스트 데이터 입니다.','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'2', 'color': '#ECE0F8'},{'post_id': '9','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'Pray for SEJABO Successful','content':'WebProgramming and Database Project','img_url':'https://do.sejong.ac.kr/attachment/view/940/clipboard.png','view_count':'0','size':'4', 'color': '#E0F8E6'},{'post_id': '10','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'세자보 테스트 데이터 입니다.','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'2', 'color': '#E0F8E6'},{'post_id': '11','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'Pray for SEJABO Successful','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'2', 'color': '#E0F8EC'}, {'post_id': '12','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'Pray for SEJABO Successful','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':
-'1', 'color': '#E0F8EC'}, {'post_id': '13','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'세자보 테스트 데이터 입니다.','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'1', 'color': '#E0F8EC'}, {'post_id': '14','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'꿀꿀','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'1', 'color': '#E0F8EC'}]
-
 //박스채우기 script
 var window_width = $(window).width();
 var window_height = $(window).height();
 $("#test").append(window_width, "<br>")
 $("#test").append(window_height)
+//body에 박힌 div 배열
+var box_done = [];
 
 document.body.onload = addElement;
 function addElement () {
+   //예제리스트
+   var receive_list= [{'post_id': '1','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'Pray for SEJABO SuccessfulPray for SEJABO Successful','content':'WebProgramming and Database Project','img_url':'https://do.sejong.ac.kr/attachment/view/940/clipboard.png','view_count':'0','size':'1', 'color': '#EFFBFB'},{'post_id': '2','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'THIS IS SEJABO TEST BENCH. Plz stay on the page','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'3', 'color': '#EFFBFB'},{'post_id': '3','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'Pray for SEJABO Successful This is Third','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'2', 'color': '#E0F8EC'},{'post_id': '4','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'세자보 테스트 데이터 입니다.','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'2', 'color': '#E0F8EC'},{'post_id': '5','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'Pray for SEJABO Successful','content':'WebProgramming and Database Project','img_url':'https://do.sejong.ac.kr/attachment/view/940/clipboard.png','view_count':'0','size':'3', 'color': '#FBEFEF'},{'post_id': '6','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'세자보 테스트 데이터 입니다.','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'1', 'color': '#FBEFEF'},{'post_id': '7','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'Pray for SEJABO Successful','content':'WebProgramming and Database Project','img_url':'https://do.sejong.ac.kr/attachment/view/940/clipboard.png','view_count':'0','size':'4', 'color': '#ECE0F8'},{'post_id': '8','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'세자보 테스트 데이터 입니다.','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'2', 'color': '#ECE0F8'},{'post_id': '9','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'Pray for SEJABO Successful','content':'WebProgramming and Database Project','img_url':'https://do.sejong.ac.kr/attachment/view/940/clipboard.png','view_count':'0','size':'4', 'color': '#E0F8E6'},{'post_id': '10','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'세자보 테스트 데이터 입니다.','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'2', 'color': '#E0F8E6'},{'post_id': '11','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'Pray for SEJABO Successful','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'2', 'color': '#E0F8EC'}, {'post_id': '12','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'Pray for SEJABO Successful','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':
+   '1', 'color': '#E0F8EC'}, {'post_id': '13','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'세자보 테스트 데이터 입니다.','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'1', 'color': '#E0F8EC'}, {'post_id': '14','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'꿀꿀','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','size':'1', 'color': '#E0F8EC'}
+   ]
    var box_shape = {'1': ['160', '220'], '2': ['200', '280'], '3': ['280', '360'], '4': ['340', '440']};
    var box_list = [];
    for (var i=0; i<receive_list.length; i++){
       box_list.push(receive_list[i]['size']);
    }
-   var box_done = [];
    var box_not_done = [];
+   var box_out = [];
    var number = 20;            //최소단위 지정 (작을수록 시간이 오래걸림)
    var x0y0, x1y0, x0y1, x1,y1;
    var min_width = 30;            //가로 시작 지점
-   var min_height = 60;         //세로 시작 지점
+   var min_height = 80;         //세로 시작 지점
    var max_width = window_width - 30;   //가로 끝 지점
    var max_height = window_height - 60;   //세로 끝 지점
    var n = 1;
@@ -48,11 +50,10 @@ function addElement () {
          newDiv.style.height = h+'px';
          newDiv.style.left = min_width+'px';
          newDiv.style.top = min_height+'px';
-         add_list = [min_width, min_height, min_width + w, min_height + h];
+         add_list = [min_width, min_height, min_width + w, min_height + h, newDiv.id];
          box_done.push(add_list);
          if (receive_list[n-1]['img_url'] == '0'){
             newText = document.createTextNode(receive_list[n-1]['title']);
-            console.log(newText);
             newDiv.appendChild(newText);
             if (receive_list[n-1]['size'] == 1){
                newDiv.classList.add("box_fa30");
@@ -80,7 +81,10 @@ function addElement () {
             newDiv.classList.add("box_backgroundSize");
          }
          n+=1;
-         document.body.appendChild(newDiv);
+         //박스 애니메이션 추가
+         newDiv.classList.add("magictime");
+         newDiv.classList.add("foolishIn");
+         box_out.push(newDiv);
       }
       else {
          for (var j=0; j<box_done.length; j++){
@@ -163,7 +167,6 @@ function addElement () {
          if (x1y1[0] <= max_width && x1y1[1] <= max_height){
             var newDiv = document.createElement("div");
             newDiv.id = "box_"+n;
-            n+=1;
             newDiv.classList.add("mouse_pointer");
             newDiv.classList.add("box_absolute");
             newDiv.classList.add("box_boxShadow");
@@ -172,9 +175,8 @@ function addElement () {
             newDiv.style.height = h+'px';
             newDiv.style.left = x0y0[0]+'px';
             newDiv.style.top = x0y0[1]+'px';
-            add_list = [x0y0[0], x0y0[1], x0y0[0] + w, x0y0[1] + h];
+            add_list = [x0y0[0], x0y0[1], x0y0[0] + w, x0y0[1] + h, newDiv.id];
             box_done.push(add_list);
-
             if (receive_list[n-1]['img_url'] == '0'){
                newText = document.createTextNode(receive_list[n-1]['title']);
                newDiv.appendChild(newText);
@@ -200,12 +202,14 @@ function addElement () {
             else {
                var newImgurl = receive_list[n-1]['img_url'];
                newImgurl = "url('" + newImgurl + "')";
-               console.log(newImgurl);
                newDiv.style.backgroundImage = newImgurl;
                newDiv.classList.add("box_backgroundSize");
             }
-
-            document.body.appendChild(newDiv);
+            //애니메이션 클래스 추가
+            n+=1;
+            newDiv.classList.add("magictime");
+            newDiv.classList.add("foolishIn");
+            box_out.push(newDiv);
          }
          else{
             add_list = [x0y0[0], x0y0[1], x0y0[0] + w, x0y0[1] + h];
@@ -213,4 +217,33 @@ function addElement () {
          }
       }
    }
+   for (var i = 0; i< box_out.length; i++){
+      document.body.appendChild(box_out[i]);
+   }
+}
+
+function refleshElement (n){
+   if (n ==-1){
+      setTimeout(function(){
+         box_done = [];
+         addElement();
+      }, 600);
+   }
+   else{
+      setTimeout(function(){
+         var box_now = box_done[n];
+         var box_nowId = box_now[4];
+         $('#'+box_nowId).addClass("magictime");
+         $('#'+box_nowId).addClass("foolishOut");
+         setTimeout(function(){
+            $("div").remove('#'+box_nowId);
+         }, 600);
+         n-=1;
+         refleshElement(n);
+      }, 30);
+   }
+}
+function refleshPage(){
+   var n = box_done.length - 1;
+   setTimeout(refleshElement(n), 100);
 }
