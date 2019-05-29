@@ -1,3 +1,5 @@
+//사용방법
+//snackbar("원하는 문자열");
 var snackbar_cnt = 0;
 function snackbar(snackbar_value) {
     snackbar_cnt++;

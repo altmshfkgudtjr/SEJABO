@@ -6,7 +6,7 @@ var img_options = {
     format: 'png'
 };
 
-//상단 네비게이터 user 이미지 추출.
+//identification 테스트용.
 var hash = MD5('asdfsdafsdafsdafa');
 var data = new Identicon(hash, img_options).toString();
 $('#idenfication_test').attr("src", "data:image/png;base64," + data);

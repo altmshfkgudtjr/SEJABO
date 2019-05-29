@@ -81,12 +81,14 @@ a:hover {
   background-color: #333; /* Black background color */
   color: #fff; /* White text color */
   text-align: center; /* Centered text */
-  border-radius: 2px; /* Rounded borders */
+  border-radius: 8px; /* Rounded borders */
   padding: 16px; /* Padding */
   position: fixed; /* Sit on top of the screen */
   z-index: 1; /* Add a z-index if needed */
-  left: 150px; /* Center the snackbar */
-  bottom: 30px; /* 30px from the bottom */
+  right: 30px; /* Center the snackbar */
+  bottom: 20px; /* 20px from the bottom */
+  cursor: default;
+  box-shadow: 0 0 6px #bbbbbb; 
 }
 #snackbar.show {
   visibility: visible; /* Show the snackbar */
@@ -97,18 +99,18 @@ a:hover {
 }
 @-webkit-keyframes fadein {
   from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  to {bottom: 20px; opacity: 1;}
 }
 @keyframes fadein {
   from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  to {bottom: 20px; opacity: 1;}
 }
 @-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
+  from {bottom: 20px; opacity: 1;}
   to {bottom: 0; opacity: 0;}
 }
 @keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
+  from {bottom: 20px; opacity: 1;}
   to {bottom: 0; opacity: 0;}
 }
 
@@ -174,19 +176,32 @@ iframe {
 
 /*------------------------------------------------------------------------*/
 /*BOX css*/
-.box_absolute {position: absolute;}
-.box_boxShadow {box-shadow: 0 0 3px #eeeeee;}
-.box_borderRadius {border-radius: 6px;}
-.box_backgroundSize {background-size: cover;}
-.box_textShadow {text-shadow: 0 1px 2px #222222;}
-.box_fontWeight {font-weight: lighter}
-.box_overflow {overflow: hidden;}
-.box_wordBreak {word-break: break-all;}
-.box_color {color: #444444;}
-.box_fa30 {font-size: 30px;}
+.box_css_basic {
+  position: absolute;
+  box-shadow: 0 0 3px #eeeeee;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 250;
+  transition: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+.box_css_text {
+  font-family: Raleway-Black;
+  text-shadow: 0 1px 2px #222222;
+  font-weight: lighter;
+  overflow: hidden;
+  word-break: break-all;
+  color: #444444;
+}
+.box_css_img {background-size: cover;}
+.box_fa30 {font-size: 30px;} 
 .box_fa40 {font-size: 38px;}
 .box_fa60 {font-size: 60px;}
-.box_fa80 {font-size: 80px;}
+.box_fa80 {font-size: 75px;}
+[id^="box_"]:hover {
+  margin-top: -10px;
+  box-shadow: 0 0 12px 2px #aaaaaa;
+}
 /*------------------------------------------------------------------------*/
 
 
@@ -683,84 +698,16 @@ border: none;
   opacity: 1;
 }
 
-.none_display{
-    display: none;
-    opacity: 0;
-    transition: opacity 1s;
-}
-.show_display
-{
-    opacity: 1;
-    transition: opacity 1s;
-}
-
-.sejong_logo{
-    width: 200px;
-    display: block;
-    margin: auto;
-    border-radius: 6px;
-    transition: 0.6s;
-}
-.sejong_logo:hover {
-  transform: scale(1.1, 1.1);
-  box-shadow: 0 0 8px  #888888;
-}
-
-#sejabo_login
-{
-    display: block;
-    float: right;
-}
-#loading_modal
-{
-  z-index: 900;
-}
-#main_modal
-{
-  z-index: 1000;
-}
-.modal {
-    background-color: white;
-    overflow: hidden;
-    display: block; 
-    position: fixed;
-}
-.modal-content
-{
-    background-color: white;
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    border: 0px;
-}
-.modal_display_none{
-    display: none;
-}
-
-
-.board1 {
-  background-color: white;
-      opacity: 1;
-      background-size: cover;
-      position: absolute;
-      width: 99%;
-      height: 93%;
-      top: 60px;
-      left: 0.5%;
-      box-shadow: 0px 0px 8px #888888;
-      border-radius: 6px;
-      z-index: 100;
-}
-
 .mouse_pointer
 {
   cursor:pointer;
 }
 
+/*상단 버튼 모임*/
 .new_page {
   display: block;
   float: right;
-  width: atuo;
+  width: auto;
   height: auto;
   margin: 0.5% 0.5%;
   margin-left: 0px;
@@ -768,34 +715,38 @@ border: none;
 .fa-redo-alt {
     font-size: 23px;
 }
-
 .login_button {
   display: block;
   float: right;
-  width: atuo;
+  width: auto;
   height: auto;
   margin: 0.5% 0.5%;
   margin-left: 0px;
 }
-
+.myinfo_button {
+  display: block;
+  float: right;
+  width: auto;
+  height: auto;
+  margin: 0.5% 0.5%;
+  margin-left: 0px;
+}
 .search_button
 {
   display: block;
   float: right;
-  width: atuo;
+  width: auto;
   height: auto;
   margin: 0.5% 0.5%;
   margin-left: 0px;
 }
-
-
 .location_now
 {
   display: block;
   position: absolute;
   top: 1%;
   left: 0.5%;
-  width: atuo;
+  width: auto;
   height: auto;
 }
 .board-title
@@ -830,7 +781,6 @@ border: none;
 {
   left: -15px;
 }
-
 .location_button
 {
   display: block;
@@ -841,353 +791,23 @@ border: none;
 
 }
 
-[id^=box]
-{
-  z-index: 250;
+/*보드*/
+.board1 {
+  background-color: white;
+      opacity: 1;
+      background-size: cover;
+      position: absolute;
+      width: 99%;
+      height: 93%;
+      top: 60px;
+      left: 0.5%;
+      box-shadow: 0px 0px 8px #888888;
+      border-radius: 6px;
+      z-index: 100;
 }
 
-[id^=box] {
-  transition-timing-function: ease-out;
-  transition-duration: 0.7s;
-}
-[id^=box]:hover {
-  transform: scale(1.1, 1.1);
-}
 
-#modal_login_btn
-{
-  display: none;
-}
 
-/* ======================================================== */
-/* 로그인 모달 */
-.login_modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 900; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  border-radius: 6px;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-/* Modal Content */
-.login_modal_content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 50%;
-  height: 430px;
-  border-radius: 6px;
-}
-/* The Close Button */
-.login_modal_close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 40px;
-  font-weight: bold;
-}
-.login_modal_close:hover,
-.login_modal_close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* ======================================================== */
-/* 검색모달 */
-.search_modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 900; /* Sit on top */
-  padding-top: 200px; /* Location of the box */
-  left: 0;
-  top: 0;
-  border-radius: 6px;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-/* Modal Content */
-.search_modal_content {
-  background-color: #fefefe;
-  margin: auto;
-  border: 1px solid #888;
-  width: 80%;
-  height: 80px;
-  padding: 10px 15px;
-  border-radius: 6px;
-}
-.fa-search
-{
-  margin-top: 10px;
-  margin-left: 10px;
-  display: block;
-  font-size: 40px;
-  float: left;
-  color: grey;
-}
-/* The Close Button */
-.search_modal_close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 40px;
-  font-weight: bold;
-}
-.search_modal_close:hover,
-.search_modal_close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-.search_modal_textbox
-{
-  border-top-width: 0px;
-  border-left-width: 0px;
-  border-right-width: 0px;
-  border-bottom-width: 1px !important;
-  display: block;
-  position: relative;
-  width: 90%;
-  height: 60px;
-  font-size: 20px;
-  margin:auto;
-  border-bottom-color: grey;
-}
-.search_modal_textbox:focus
-{
-  border-bottom-width: 2px !important;
-}
-/* ======================================================== */
-/* 포스트모달 */
-.post_modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 900; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-/* Modal Content */
-.post_modal_content {
-  position: relative;
-  margin: auto;
-  border-radius: 8px;
-  transform: translate(-50%, -50%);
-  background-color: #fefefe;
-  border: 1px solid #888;
-  max-width: 1400px;
-  height: 800px;
-}
-/* The Close Button */
-.post_modal_close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 40px;
-  font-weight: bold;
-  padding: 10px;
-  margin-right: 10px;
-}
-.post_modal_close:hover,
-.post_modal_close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-.share_button {
-  float: left;
-  margin: 30px;
-  padding: 10px 15px 10px 15px;
-  border-radius: 8px;
-}
-.post_top {
-  position: absolute;
-  width: 800px;
-  height: 60px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  margin: 20px;
-  padding: 10px 15px;
-  background-color: rgba(200,200,200,0.5);
-  border-radius: 8px;
-  cursor: default;
-}
-.post_data_start_title {
-  float: left;
-  font-size: 25px;
-  color: #333333;
-  margin-right: 10px;
-  font-weight: bold;
-  margin-left: 180px;
-}
-.post_data_start {
-  float: left;
-  font-size: 25px;
-  color: #333333;
-}
-.post_data_between {
-  float: left;
-  font-size: 25px;
-  color: #333333;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-.post_data_end {
-  float: left;
-  font-size: 25px;
-  color: #333333;
-  margin-right: 10px;
-}
-.post_content_img {
-  position: absolute;
-  width: 50%;
-  height: 91%;
-  left: 0;
-  bottom: 0;
-  padding: 30px;
-  padding-right: 15px;
-}
-.post_content_img_content {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(200,200,200,0.5);
-  border-radius: 6px;
-  cursor: pointer;
-}
-.post_content_text {
-  position: absolute;
-  width: 50%;
-  height: 91%;
-  right: 0;
-  bottom: 0;
-  padding: 30px;
-  padding-left: 15px;
-}
-.profile_img {
-  float: left;
-  width: 80px;
-  height: 80px;
-  border-radius: 8px;
-  background-color: rgba(200,200,200,0.5);
-  cursor: pointer;
-}
-
-/*idenfication 테스트용*/
-#idenfication_test
-{
-  width: 80px;
-  height: 80px;
-}
-
-.profile_title {
-  float: right; 
-  width: 550px;
-  height: 80px;
-  font-size: 40px;
-  color: #333333;
-  background-color: rgba(200,200,200,0.5);
-  border-radius: 8px;
-  padding: 10px;
-  padding-top: 15px;
-}
-.profile_hr {
-  margin-top: 20px;
-  float: left;
-  width: 100%;
-  border-top: 4px solid rgba(200,200,200, 0.3);
-  margin-bottom: 20px;
-}
-.post_content_content {
-  float: left;
-  width: 100%;
-  height: 350px;
-  background-color: rgba(200,200,200,0.5);
-  border-radius: 8px;
-  padding: 10px;
-  font-size: 20px;
-  color: #333333;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-.post_content_url {
-  float: left;
-  margin-bottom: 25px;
-  width: 100%;
-  height: 60px;
-  border-radius: 8px;
-  color: #333333;
-  font-size: 25px;
-  background-color: rgba(200,200,200, 0.5);
-  padding: 10px;
-  text-align: center;
-  box-shadow: 0 0 8px #777777;
-  cursor: pointer;
-  transition: 0.6s;
-}
-.post_content_url:hover {
-  box-shadow: 0 0 8px #fefefe;
-  background-color: rgba(100, 100, 100, 0.7);
-}
-.post_content_good {
-  float: left;
-  width: 310px;
-  height: 60px;
-  border-radius: 8px;
-  color: white;
-  font-size: 25px;
-  background-color: #30A92C;
-  padding: 10px;
-  text-align: center;
-  box-shadow: 0 0 8px #777777;
-  cursor: pointer;
-  transition: 0.6s;
-}
-.post_content_good:hover {
-  background-color: #068E06;
-  box-shadow: 0 0 8px #fefefe;
-}
-.post_content_bad {
-  float: right;
-  width: 310px;
-  height: 60px;
-  margin-left: 20px;
-  border-radius: 8px;
-  color: white;
-  font-size: 25px;
-  background-color: #E93333;
-  padding: 10px;
-  text-align: center;
-  box-shadow: 0 0 8px #777777;
-  cursor: pointer;
-  transition: 0.6s;
-}
-.post_content_bad:hover {
-  background-color: #B60B0B;
-  box-shadow: 0 0 8px #fefefe;
-}
-.post_content_progress {
-  float: left;
-  width: 400px;
-  height: 60px;
-  margin-left: 20px;
-  border-radius: 8px;
-  color: white;
-  font-size: 25px;
-  padding: 10px;
-  text-align: center;
-}
 
 @media screen and (max-width: 1000px) {
 
@@ -1195,7 +815,7 @@ border: none;
     position: relative;
     display: block;
     float: right;
-    width: atuo;
+    width: auto;
     height: auto;
     margin: 2% 1.5%;
     margin-left: 0px;
@@ -1204,9 +824,17 @@ border: none;
     position: relative;
     display: block;
     float: right;
-    width: atuo;
+    width: auto;
     height: auto;
     margin: 2% 1.5%;
+    margin-left: 0px;
+  }
+  .myinfo_button {
+    display: block;
+    float: right;
+    width: auto;
+    height: auto;
+    margin: 0.5% 0.5%;
     margin-left: 0px;
   }
   .search_button
@@ -1214,7 +842,7 @@ border: none;
     position: relative;
     display: block;
     float: right;
-    width: atuo;
+    width: auto;
     height: auto;
     margin: 2% 1.5%;
     margin-left: 0px;
@@ -1224,7 +852,7 @@ border: none;
     display: block;
     position: relative;
     float: left;
-    width: atuo;
+    width: auto;
     height: auto;
     margin: 1.5% 1.5%;
       
@@ -1288,4 +916,9 @@ border: none;
     cursor: default;
     transition: 0.7s;
   }
+}
+
+
+.idenfication_test {
+    border-radius: 8px;
 }
