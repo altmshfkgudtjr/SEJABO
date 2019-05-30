@@ -216,6 +216,9 @@ window.onclick = function (event) {
 //포스트 모달 부분.
 var post_modal = document.getElementById("post_modal");
 var post_modal_close = document.getElementsByClassName("post_modal_close")[0];
+//좋아요 싫어요 버튼 기본값
+var like_button_click_cnt = 0;
+var hate_button_click_cnt = 0;
 
 // When the user clicks the button, open the modal
 function post_button_click(post_id) {
@@ -223,6 +226,9 @@ function post_button_click(post_id) {
   $('#post_modal_content').addClass("magictime");
   $('#post_modal_content').addClass("spaceInDown");
   get_post_content(post_id);
+  like_button_click_cnt = 0;
+  hate_button_click_cnt = 0;
+  console.log(like_button_click_cnt, hate_button_click_cnt);
 }
 // When the user clicks on <span> (x), close the modal
 post_modal_close.onclick = function () {
@@ -249,10 +255,33 @@ function post_content_img_image_over(){
 function post_content_img_image_out(){
   document.getElementById('post_content_img_image').style.transform = "translate(-50%, -50%) scale(1,1)";
 }
+
+
+//좋아요 누를 시
 document.getElementById('post_content_good').onclick = function() {
+  if (like_button_click_cnt == 0){
+    like_button_click_cnt = 1;
+    hate_button_click_cnt = 0;
+    $('#post_content_good').css('background-color', '#068E06');
+    $('#post_content_good').css('box-shadow', '0 0 8px #fefefe');
+    $('#post_content_bad').css('background-color', '#E93333');
+    $('#post_content_bad').css('box-shadow', '0 0 8px #777777');
+    post_like_button_click();
+    console.log("like button click");
+  }
 }
+//싫어요 누를 시
 document.getElementById('post_content_bad').onclick = function() {
-  
+  if (hate_button_click_cnt == 0){
+    like_button_click_cnt = 0;
+    hate_button_click_cnt = 1;
+    $('#post_content_good').css('background-color', '#30A92C');
+    $('#post_content_good').css('box-shadow', '0 0 8px #777777');
+    $('#post_content_bad').css('background-color', '#B60B0B');
+    $('#post_content_bad').css('box-shadow', '0 0 8px #fefefe');
+    post_hate_button_click();
+    console.log("hate button click");
+  }
 }
 //=============================================================//
 //게시글 관리 

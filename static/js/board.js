@@ -300,6 +300,7 @@ function get_post_content(post_id) {
    document.getElementById('post_content_good').prepend(post_like_count+'  ');
    document.getElementById('post_content_bad').prepend(post_dislike_count+'   ');
    if (new_post_box['img_url'] == '0'){
+      document.getElementById('post_content_good').style.left = "28px";
       $('div').remove('#post_content_img');   //이미지 영역 삭제
       $('div').remove('#post_data_start_title'); //영역 문제로 인한 "게시 기간:" 삭제
       document.getElementById('post_modal_content').style.width="650px";
@@ -311,6 +312,7 @@ function get_post_content(post_id) {
       document.getElementById('post_content_text').style.paddingLeft="30px";
    }
    else{
+      document.getElementById('post_content_good').style.left = "13px";
       document.getElementById('post_content_img_image').setAttribute('src', new_post_box['img_url']);
    }
 }
@@ -370,18 +372,9 @@ function remove_post_content() {
    post_content_imgImage.setAttribute('onmouseover', 'post_content_img_image_over();');
    post_content_imgImage.setAttribute('onmouseout', 'post_content_img_image_out();');
    document.getElementById('post_content_img_content').appendChild(post_content_imgImage);
-   //post_content_good,bad 원상복구 작업
-   $('div').remove('#post_content_good');
-   $('div').remove('#post_content_bad');
-   var post_contentGood = document.createElement("div");
-   var post_contentBad = document.createElement("div");
-   post_contentGood.setAttribute('class', 'post_content_good');
-   post_contentGood.setAttribute('id', 'post_content_good');
-   post_contentBad.setAttribute('class', 'post_content_bad');
-   post_contentBad.setAttribute('id', 'post_content_bad');
-   document.getElementById('post_content_text').appendChild(post_contentGood);
-   document.getElementById('post_content_text').appendChild(post_contentBad);
    //post_content_good,bad i 태그 원상복구 작업
+   $('#post_content_good').empty();
+   $('#post_content_bad').empty();
    var like_symbol = document.createElement("i");
    var bad_symbol = document.createElement("i");
    like_symbol.setAttribute('class', 'fas fa-thumbs-up');
@@ -463,4 +456,14 @@ function clipboardCopy() {
    document.getElementById('clipboard_copy').blur();
    snackbar("URL 복사완료!");
    $('textarea').remove('#clipboard_copy');
+}
+
+//좋아요 버튼 클릭 시
+function post_like_button_click() {
+
+}
+
+//싫어요 버튼 클릭 시
+function post_hate_button_click() {
+   
 }
