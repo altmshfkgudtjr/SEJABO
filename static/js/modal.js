@@ -167,6 +167,25 @@ document.getElementById('myinfo_post_bad_button').onclick = function() {
     likeDivMakeNot();
   }
 }
+//싫어요 또는 좋아요 게시물 클릭 시
+function myinfo_user_post_click(post_id) {
+  //내정보모달을 끔
+  myinfo_modal.style.display = "none";
+  $('#myinfo_modal_content').removeClass("magictime");
+  $('#myinfo_modal_content').removeClass("spaceInDown");
+  //포스트모달을 킴
+  post_modal.style.display = "block";
+  $('#post_modal_content').addClass("magictime");
+  $('#post_modal_content').addClass("spaceInDown");
+  //정보를 가져옴
+  get_myinfo_post_modal(post_id);
+}
+//게시물 삭제하기 버튼을 눌렀을시
+document.getElementById('myinfo_user_post_delete').onclick = function() {
+  snackbar("내가 작성한 글이 삭제되었습니다.");
+  document.getElementById('myinfo_user_post').style.display = "none";
+  document.getElementById('myinfo_user_post_not').style.display = "block";
+}
 //======================================================================//
 //검색 모달 부분.
 var search_modal = document.getElementById("search_modal");
@@ -229,6 +248,11 @@ function post_content_img_image_over(){
 // post_content_image out
 function post_content_img_image_out(){
   document.getElementById('post_content_img_image').style.transform = "translate(-50%, -50%) scale(1,1)";
+}
+document.getElementById('post_content_good').onclick = function() {
+}
+document.getElementById('post_content_bad').onclick = function() {
+  
 }
 //=============================================================//
 //게시글 관리 
