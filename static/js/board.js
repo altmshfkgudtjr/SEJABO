@@ -65,7 +65,7 @@ function addElement () {
          newDiv.style.height = h+'px';
          newDiv.style.left = min_width+'px';
          newDiv.style.top = min_height+'px';
-         add_list = [min_width, min_height, min_width + w, min_height + h, newDiv.id];
+         add_list = [min_width, min_height, min_width + w, min_height + h, newDiv.id, receive_list[i].post_id];
          box_done.push(add_list);
          receive_post_list.push(receive_list[n-1]);   // 모달 표출을 위한 전역변수에 포스트데이터 넣어주기.
          if (receive_list[n-1]['img_url'] == '0'){
@@ -186,7 +186,7 @@ function addElement () {
             newDiv.style.height = h+'px';
             newDiv.style.left = x0y0[0]+'px';
             newDiv.style.top = x0y0[1]+'px';
-            add_list = [x0y0[0], x0y0[1], x0y0[0] + w, x0y0[1] + h, newDiv.id];
+            add_list = [x0y0[0], x0y0[1], x0y0[0] + w, x0y0[1] + h, newDiv.id, receive_list[i].post_id];
             box_done.push(add_list);
             receive_post_list.push(receive_list[n-1]);   // 모달 표출을 위한 전역변수에 포스트데이터 넣어주기.
             if (receive_list[n-1]['img_url'] == '0'){
@@ -222,7 +222,7 @@ function addElement () {
             box_out.push(newDiv);
          }
          else{
-            add_list = [x0y0[0], x0y0[1], x0y0[0] + w, x0y0[1] + h];
+            add_list = [x0y0[0], x0y0[1], x0y0[0] + w, x0y0[1] + h, receive_list[i].post_id];
             box_not_done.push(add_list);
          }
       }
@@ -420,19 +420,42 @@ function remove_post_content() {
 
 //클립보드 복사 함수
 function clipboardCopy() {
+   // 모든 포스트 리스트를 가져온다.
+   var receive_list_all= [
+   {'post_id': '0','reg_date':'2019-04-11', 'exp_date':'2019-04-13','title':'Pray for SEJABO SuccessfulPray for SEJABO Successful','content':'WebProgramming and Database Project','url':'https://www.naver.com','img_url':'https://do.sejong.ac.kr/attachment/view/940/clipboard.png','view_count':'0','like_count':'0','dislike_count':'0','like_count':'0','dislike_count':'0','size':'4', 'color': '#EFFBFB'},
+   {'post_id': '2','reg_date':'2019-04-10', 'exp_date':'2019-04-14','title':'THIS IS SEJABO TEST BENCH. Plz stay on the page','content':'WebProgramming and Database Project','url':'https://www.naver.com','img_url':'0','view_count':'0','like_count':'0','dislike_count':'0','size':'3', 'color': '#EFFBFB'},
+   {'post_id': '4','reg_date':'2019-04-09', 'exp_date':'2019-04-15','title':'Pray for SEJABO Successful This is Third','content':'WebProgramming and Database Project','url':'https://www.naver.com','img_url':'0','view_count':'0','like_count':'0','dislike_count':'0','size':'2', 'color': '#E0F8EC'},
+   {'post_id': '3','reg_date':'2019-04-08', 'exp_date':'2019-04-16','title':'세자보 테스트 데이터 입니다.','content':'WebProgramming and Database Project','url':'https://www.naver.com','img_url':'0','view_count':'0','like_count':'0','dislike_count':'0','size':'2', 'color': '#E0F8EC'},
+   {'post_id': '1','reg_date':'2019-04-07', 'exp_date':'2019-04-17','title':'Pray for SEJABO Successful','content':'WebProgramming and Database Project','url':'https://www.naver.com','img_url':'https://do.sejong.ac.kr/attachment/view/940/clipboard.png','view_count':'0','like_count':'0','dislike_count':'0','size':'3', 'color': '#FBEFEF'},
+   {'post_id': '6','reg_date':'2019-04-06', 'exp_date':'2019-04-18','title':'세자보 테스트 데이터 입니다.','content':'WebProgramming and Database Project','url':'https://www.naver.com','img_url':'0','view_count':'0','like_count':'0','dislike_count':'0','size':'1', 'color': '#FBEFEF'},
+   {'post_id': '30','reg_date':'2019-04-05', 'exp_date':'2019-04-19','title':'Pray for SEJABO Successful','content':'WebProgramming and Database Project','url':'https://www.naver.com','img_url':'https://do.sejong.ac.kr/attachment/view/2007/clipboard.png','view_count':'0','like_count':'0','dislike_count':'0','size':'4', 'color': '#ECE0F8'},
+   {'post_id': '8','reg_date':'2019-04-04', 'exp_date':'2019-04-10','title':'세자보 테스트 데이터 입니다.','content':'WebProgramming and Database Project','url':'https://www.naver.com','img_url':'0','view_count':'0','like_count':'0','dislike_count':'0','size':'2', 'color': '#ECE0F8'},
+   {'post_id': '9','reg_date':'2019-04-03', 'exp_date':'2019-04-11','title':'Pray for SEJABO Successful','content':'WebProgramming and Database Project','url':'0','img_url':'https://do.sejong.ac.kr/attachment/view/940/clipboard.png','view_count':'0','like_count':'0','dislike_count':'0','size':'4', 'color': '#E0F8E6'},
+   {'post_id': '5','reg_date':'2019-04-02', 'exp_date':'2019-04-12','title':'세자보 테스트 데이터 입니다.세자보 테스트 데이터 입니다.세자보 테스트 데이터 입니다.','content':'WebProgramming and Database Project','url':'https://www.naver.com','img_url':'0','view_count':'0','like_count':'0','dislike_count':'0','size':'4', 'color': '#E0F8E6'},
+   {'post_id': '11','reg_date':'2019-04-01', 'exp_date':'2019-04-23','title':'세자보 테스트 데이터 입니다.세자보 테스트 데이터 입니다.세자보 테스트 데이터 입니다.','content':'WebProgramming and Database Project','url':'https://www.naver.com','img_url':'0','view_count':'0','like_count':'0','dislike_count':'0','size':'3', 'color': '#E0F8EC'}, 
+   {'post_id': '8','reg_date':'2019-03-11', 'exp_date':'2019-04-24','title':'세자보 테스트 데이터 입니다.세자보 테스트 데이터 입니다.세자보 테스트 데이터 입니다.','content':'WebProgramming and Database Project','url':'https://www.naver.com','img_url':'0','view_count':'0','like_count':'0','dislike_count':'0','size':'2', 'color': '#E0F8EC'}, 
+   {'post_id': '13','reg_date':'2019-03-17', 'exp_date':'2019-04-25','title':'세자보 테스트 데이터 입니다.세자보 테스트 데이터 입니다.세자보 테스트 데이터 입니다.','content':'WebProgramming and Database Project','url':'https://www.naver.com','img_url':'0','view_count':'0','like_count':'0','dislike_count':'0','size':'1', 'color': '#E0F8EC'}, 
+   {'post_id': '7','reg_date':'2019-03-16', 'exp_date':'2019-04-26','title':'세자보 테스트 데이터 입니다. 세종대 대자보 만만세 우리나라 만만세 만세이에이에이','url':'0','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','like_count':'0','dislike_count':'0','size':'1', 'color': '#E0F8EC'}, 
+   {'post_id': '10','reg_date':'2019-03-15', 'exp_date':'2019-04-27','title':'세자보 테스트 데이터 입니다. 세종대 대자보 만만세 우리나라 만만세 만세이에이에이','url':'0','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','like_count':'0','dislike_count':'0','size':'1', 'color': '#E0F8EC'}, 
+   {'post_id': '16','reg_date':'2019-03-14', 'exp_date':'2019-04-29','title':'세자보 테스트 데이터 입니다. 세종대 대자보 만만세 우리나라 만만세 만세이에이에이','url':'0','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','like_count':'0','dislike_count':'0','size':'1', 'color': '#E0F8EC'}, 
+   {'post_id': '22','reg_date':'2019-03-12', 'exp_date':'2019-04-30','title':'세자보 테스트 데이터 입니다. 세종대 대자보 만만세 우리나라 만만세 만세이에이에이','url':'0','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','like_count':'0','dislike_count':'0','size':'1', 'color': '#E0F8EC'}, 
+   {'post_id': '33','reg_date':'2019-03-13', 'exp_date':'2019-04-01','title':'세자보 테스트 데이터 입니다. 세종대 대자보 만만세 우리나라 만만세 만세이에이에이','url':'0','content':'WebProgramming and Database Project','img_url':'0','view_count':'0','like_count':'0','dislike_count':'0','size':'1', 'color': '#E0F8EC'}
+   ]
    var now_id = document.getElementById('post_modal_content')['title'];
    now_id = now_id.slice(4);
-   for (var i=0; i<receive_post_list.length; i++){
-      var box_done_id = receive_post_list[i];
-      if (now_id == box_done_id['post_id']){
+   
+   var copyText_1 = box_done[now_id];
+   var copyText_2 = copyText_1[5];
+   for (var i=0; i<receive_list_all.length; i++){
+      var receive_list_all_post = receive_list_all[i];
+      if (now_id == receive_list_all_post['post_id']){
          i-=1;
          break;
       }
    }
-   var copyText = receive_post_list[i];
    var clipboard_textarea = document.createElement('textarea');
    clipboard_textarea.setAttribute('id', 'clipboard_copy');
-   clipboard_textarea.value = copyText['url'];
+   clipboard_textarea.value = receive_list_all_post['url'];
    clipboard_textarea.style.zIndex = "-3000";
    document.body.appendChild(clipboard_textarea);
    clipboard_textarea.select();
