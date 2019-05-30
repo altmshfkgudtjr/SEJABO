@@ -103,12 +103,23 @@ var myinfo_modal = document.getElementById("myinfo_modal");
 var myinfo_button = document.getElementById("myinfo_button");
 var myinfo_modal_close = document.getElementsByClassName("myinfo_modal_close")[0];
 var myinfo_logout = document.getElementById("myinfo_user_logout");
+// 현재 좋아요 보기가 적용되어 있음. myinfo_post_good_cnt = 1
+var myinfo_post_good_cnt = 1;
+var myinfo_post_bad_cnt = 0;
 
 // When the user clicks the button, open the modal
 myinfo_button.onclick = function () {
   myinfo_modal.style.display = "block";
   $('#myinfo_modal_content').addClass("magictime");
   $('#myinfo_modal_content').addClass("spaceInDown");
+  if (myinfo_post_good_cnt == 1){
+    remove_myinfo_post_contents();
+    likeDivMake();
+  }
+  else if (myinfo_post_bad_cnt == 1){
+    remove_myinfo_post_contents();
+    likeDivMakeNot();
+  }
 }
 // When the user clicks on <span> (x), close the modal
 myinfo_modal_close.onclick = function () {
@@ -135,15 +146,14 @@ myinfo_logout.onclick = function() {
 }
 
 //좋아요 게시물 눌렀을 시
-var myinfo_post_good_cnt = 1; // 현재 좋아요 보기가 적용되어 있음.
-var myinfo_post_bad_cnt = 0;
 document.getElementById('myinfo_post_good_button').onclick = function() {
   if (myinfo_post_good_cnt != 1) {
     $('#myinfo_post_good_button').addClass("myinfo_post_button_click");
     $('#myinfo_post_bad_button').removeClass("myinfo_post_button_click"); 
     myinfo_post_good_cnt = 1;
     myinfo_post_bad_cnt = 0;
-    console.log("Good Button Click!");
+    remove_myinfo_post_contents();
+    likeDivMake();
   }
 }
 //싫어요 게시물 눌렀을 시
@@ -153,7 +163,8 @@ document.getElementById('myinfo_post_bad_button').onclick = function() {
     $('#myinfo_post_bad_button').addClass("myinfo_post_button_click");
     myinfo_post_good_cnt = 0;
     myinfo_post_bad_cnt = 1;
-    console.log("Bad Button Click!");
+    remove_myinfo_post_contents();
+    likeDivMakeNot();
   }
 }
 //======================================================================//

@@ -463,7 +463,7 @@
     z-index: 1000;
   }
   /*myinfo 안에 div 동적 생성 css*/
-  .myinfo_post_bigbox_content {
+  .myinfo_post_bigbox_content_good {
     position: relative;
     width: 750px;
     height: 150px;
@@ -473,6 +473,31 @@
     box-shadow: 0 0 6px #aaaaaa;
     background-color: rgba(245,245,245,1);
     margin-bottom: 30px;
+    transition: 0.4s;
+    cursor: pointer;
+  }
+  .myinfo_post_bigbox_content_good:hover {
+    transform: scale(1.06, 1.06);
+    background-color: rgba(199, 255, 186, 0.5);
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+  }
+  .myinfo_post_bigbox_content_bad {
+    position: relative;
+    width: 750px;
+    height: 150px;
+    margin: auto;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 6px #aaaaaa;
+    background-color: rgba(245,245,245,1);
+    margin-bottom: 30px;
+    transition: 0.4s;
+    cursor: pointer;
+  }
+  .myinfo_post_bigbox_content_bad:hover {
+    transform: scale(1.06, 1.06);
+    background-color: rgba(255, 219, 219,0.5);
+    box-shadow: 0 0 0 rgba(0,0,0,0);
   }
   .myinfo_post_bigbo_title {
     position: relative;
@@ -489,10 +514,9 @@
   .myinfo_post_bigbo_text {
     position: relative;
     width: 720px;
-    height: 80px;
-    padding: 5px 0;
+    height: 70px;
+    padding-top: 10px;
     font-size: 20px;
-    font-weight: thin;
     color: #444444;
     overflow: hidden;
   }
