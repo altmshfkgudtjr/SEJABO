@@ -133,6 +133,29 @@ myinfo_logout.onclick = function() {
   $('#myinfo_modal_content').removeClass("magictime");
   $('#myinfo_modal_content').removeClass("spaceInDown");
 }
+
+//좋아요 게시물 눌렀을 시
+var myinfo_post_good_cnt = 1; // 현재 좋아요 보기가 적용되어 있음.
+var myinfo_post_bad_cnt = 0;
+document.getElementById('myinfo_post_good_button').onclick = function() {
+  if (myinfo_post_good_cnt != 1) {
+    $('#myinfo_post_good_button').addClass("myinfo_post_button_click");
+    $('#myinfo_post_bad_button').removeClass("myinfo_post_button_click"); 
+    myinfo_post_good_cnt = 1;
+    myinfo_post_bad_cnt = 0;
+    console.log("Good Button Click!");
+  }
+}
+//싫어요 게시물 눌렀을 시
+document.getElementById('myinfo_post_bad_button').onclick = function() {
+  if (myinfo_post_bad_cnt != 1){
+    $('#myinfo_post_good_button').removeClass("myinfo_post_button_click");
+    $('#myinfo_post_bad_button').addClass("myinfo_post_button_click");
+    myinfo_post_good_cnt = 0;
+    myinfo_post_bad_cnt = 1;
+    console.log("Bad Button Click!");
+  }
+}
 //======================================================================//
 //검색 모달 부분.
 var search_modal = document.getElementById("search_modal");

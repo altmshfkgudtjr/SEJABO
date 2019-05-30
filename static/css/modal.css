@@ -399,8 +399,57 @@
     width: 70%;
     padding: 30px 30px 30px 15px;
   }
+  .myinfo_post_good_button {
+    position: absolute;
+    width: 35%;
+    height: 80px;
+    z-index: 950;
+    box-sizing: border-box;
+    top: 5%;
+    left: 10%;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: rgba(220,220,220,0.5);
+    text-align: center;
+    box-shadow: 0 0 8px #aaaaaa;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  .myinfo_post_bad_button {
+    position: absolute;
+    width: 35%;
+    height: 80px;
+    z-index: 950;
+    box-sizing: border-box;
+    top: 5%;
+    right: 10%;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: rgba(220,220,220,0.5);
+    box-shadow: 0 0 8px #aaaaaa;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  .myinfo_post_good_button:hover {
+    transform: translate(0, -10%);
+  }
+  .myinfo_post_bad_button:hover {
+    transform: translate(0, -10%);
+  }
+  .myinfo_post_button_click {
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+    background-color: rgba(100,100,100,0.5);
+    color: white;
+    cursor: default;
+  }
   .myinfo_post_bigbox {
     position: absolute;
+    padding: 30px;
     width: 92%;
     height: 84%;
     left: 50%;
@@ -408,12 +457,45 @@
     transform: translate(-50%, -46%);
     border-radius: 8px;
     box-shadow: 0 0 8px #aaaaaa;
-    background-color: rgba(250,250,250,0.5);
+    background-color: rgba(253,253,253,1);
     overflow-x: hidden;
     overflow-y: auto;
+    z-index: 1000;
   }
-
-
+  /*myinfo 안에 div 동적 생성 css*/
+  .myinfo_post_bigbox_content {
+    position: relative;
+    width: 750px;
+    height: 150px;
+    margin: auto;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 6px #aaaaaa;
+    background-color: rgba(245,245,245,1);
+    margin-bottom: 30px;
+  }
+  .myinfo_post_bigbo_title {
+    position: relative;
+    width: 720px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #333333;
+    padding-bottom: 8px;
+    border-bottom: 4px solid #eaeaea;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .myinfo_post_bigbo_text {
+    position: relative;
+    width: 720px;
+    height: 80px;
+    padding: 5px 0;
+    font-size: 20px;
+    font-weight: thin;
+    color: #444444;
+    overflow: hidden;
+  }
 
 
   /* ======================================================== */
