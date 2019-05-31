@@ -114,12 +114,12 @@ function addElement (return_json) {
                   newDiv.style.backgroundImage = newImgurl;
                   newDiv.classList.add("box_css_img");
                }
+               //onclick 속성 추가
+               newDiv.setAttribute("onclick", "post_button_click("+receive_list[n-1]['post_id']+");");
                n+=1;
                //박스 애니메이션 추가
                newDiv.classList.add("magictime");
                newDiv.classList.add("foolishIn");
-               //onclick 속성 추가
-               newDiv.setAttribute("onclick", "post_button_click("+newDiv.id+");");
                box_out.push(newDiv);
             }
             else {
@@ -235,12 +235,12 @@ function addElement (return_json) {
                      newDiv.style.backgroundImage = newImgurl;
                      newDiv.classList.add("box_css_img");
                   }
+                  //onclick 속성 추가
+                  newDiv.setAttribute("onclick", "post_button_click("+receive_list[n-1]['post_id']+");");
                   //애니메이션 클래스 추가
                   n+=1;
                   newDiv.classList.add("magictime");
                   newDiv.classList.add("foolishIn");
-                  //onclick 속성 추가
-                  newDiv.setAttribute("onclick", "post_button_click("+newDiv.id+");");
                   box_out.push(newDiv);
                }
                else{
