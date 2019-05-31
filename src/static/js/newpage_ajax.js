@@ -12,12 +12,6 @@ function newpage_submit(now_build, box_done){
         {
             //setTimeout(refleshElement(n, json['list']), 100);
             refleshElement(n, json['list']);
-
-            /*
-            var hash__ = MD5(json[??]['author_id']);
-            var data__ = new Identicon(hash__, img_options).toString();
-            $('#profile_img_id').attr("src", "data:image/png;base64," + data__);
-            */
         }
         else if(json['result'] == "bad request")
         {

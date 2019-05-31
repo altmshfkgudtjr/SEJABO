@@ -118,7 +118,7 @@ myinfo_button.onclick = function () {
   }
   else if (myinfo_post_bad_cnt == 1){
     remove_myinfo_post_contents();
-    //likeDivMakeNot(user_DISLIKE_POSTS);
+    likeDivMakeNot(user_DISLIKE_POSTS);
   }
 }
 // When the user clicks on <span> (x), close the modal
@@ -165,7 +165,7 @@ document.getElementById('myinfo_post_bad_button').onclick = function() {
     myinfo_post_good_cnt = 0;
     myinfo_post_bad_cnt = 1;
     remove_myinfo_post_contents();
-    //likeDivMakeNot(user_DISLIKE_POSTS);
+    likeDivMakeNot(user_DISLIKE_POSTS);
   }
 }
 //싫어요 또는 좋아요 게시물 클릭 시

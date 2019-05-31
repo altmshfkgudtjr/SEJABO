@@ -17,9 +17,9 @@ function myinfo_user_page(json)
     $('#login_button').css('display', 'none');
 
     //내정보 -> identication
-    var idf_user_hash = MD5(user_ID);
+    var idf_user_hash = MD5(user_ID+"");
     var idf_user_data = new Identicon(idf_user_hash, img_options).toString();
-    $('#myinfo_user_img').attr("src", "data:image/png;base64," + idf_user_data);
+    $('#myinfo_user_img').attr("src", "data:image/png;  base64," + idf_user_data);
 
     //내정보 -> 이름 출력
     $('#myinfo_user_name').text(user_NAME);
@@ -57,37 +57,41 @@ function myinfo_user_page(json)
         user_LIKE_POSTS.push(json['like_posts'][i]);
     }
 
+    //내정보 -> 싫어요 게시글 리스트 생성
     for(var i=0; i < json['dislike_posts'].length; i++)
     {
         user_DISLIKE_POSTS.push(json['dislike_posts'][i]);
     }
-    
-    
 }
 
 
 
 //===========================ajax
 //로그인 상태 확인
-if (localStorage.getItem('sejabo_token') != null) {
-    var a_jax = A_JAX('/userinfo', "GET", localStorage.getItem('sejabo_token'));
-    $.when(a_jax).done(function () {
-        user_info = a_jax.responseJSON;
-        var json = a_jax.responseJSON;
-        if (json['result'] == "success") {
-            
-            myinfo_user_page(json);
-            
-        }
-        else{
-            alert("자동 로그인에 실패했습니다. 다시 로그인 해주세요.");
-        }
-    })
+function get_user_info()
+{
+    if (localStorage.getItem('sejabo_token') != null) {
+        var a_jax = A_JAX('/userinfo', "GET", localStorage.getItem('sejabo_token'));
+        $.when(a_jax).done(function () {
+            user_info = a_jax.responseJSON;
+            var json = a_jax.responseJSON;
+            if (json['result'] == "success") {
+                
+                myinfo_user_page(json);
+                
+            }
+            else{
+                alert("자동 로그인에 실패했습니다. 다시 로그인 해주세요.");
+            }
+        })
+    }
+    else{
+        //로그인 버튼 띄우기.
+        $('#login_button').removeClass('display_none');
+    }
 }
-else{
-    //로그인 버튼 띄우기.
-    $('#login_button').removeClass('display_none');
-}
+
+
 
 //로그인_AJAX
 function sejabo_login(){
@@ -115,7 +119,7 @@ function sejabo_login(){
             localStorage.setItem('sejabo_token', json['access_token']);
             
             //마이 페이지 생성
-            myinfo_user_page(json)
+            get_user_info();
 
             //로그인 모달 닫기
             login_modal.style.display = "none";

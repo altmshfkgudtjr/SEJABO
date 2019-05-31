@@ -38,6 +38,7 @@ def add_post():
    if current_user['student_id'] != 16011089 and result is not None: abort(400)
    build = request.form['build']
    build = build.split(",")
+   if len(build) == 0: abort(400)
    title = request.form['title']
    content = request.form['content']
    size = int(request.form['size'])
@@ -80,10 +81,8 @@ def add_post():
       cursor.execute(sql)
       result = cursor.fetchone()
       for i in build:
-      	print(BUILD_LIST[i],result["post_id"])
       	sql = "insert into post_building values(%s,%s);"
       	cursor.execute(sql,(BUILD_LIST[i],result["post_id"]))
-
    g.db.commit()
    return jsonify(result = "success")
 
@@ -93,31 +92,40 @@ def add_post():
 def modify_post():
    current_user = select_id(g.db, get_jwt_identity())
    if current_user is None: abort(403)
+   
    with g.db.cursor() as cursor:
       sql = "SELECT * from post where author = %s"
-      cursor.execute(sql, (current_user['select_id'],))
+      cursor.execute(sql, (current_user['student_id'],))
       result = cursor.fetchone()
-   if result is not None: abort(400)
+   if result is None:
+      print(0)
+      abort(400)
+   print("sad")
+   print(request.form.get('title'))
    title = request.form['title']
    content = request.form['content']
    url = request.form.get('url')
    if url == "": url = None
-   if not (len(title) >= 1 and len(title) <= 500): abort(400)
-   if len(content) == 0: abort(400)
-   if url is not None and url.startswith("http") is False: abort(400)
+   if not (len(title) >= 1 and len(title) <= 500):
+      abort(400)
+   if len(content) == 0:
+      abort(400)
+   if url is not None and url.startswith("http") is False:
+      abort(400)
    input_tuple = (
       title,
       content,
       url,
       current_user['student_id']
    )
+   
    with g.db.cursor() as cursor:
       sql = "UPDATE post \
       SET title = %s, content = %s, url = %s \
       WHERE author = %s"
       cursor.execute(sql, input_tuple)
    g.db.commit()
-   return jsonify(success = "success")
+   return jsonify(result = "success")
 
 #회원정보 반환
 @bp.route('/userinfo')

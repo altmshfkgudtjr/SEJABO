@@ -511,6 +511,10 @@ function get_post_content(post_id) {
          //현재 모달 어느 박스인지 식별자 추가함 - 모바일
          $('div').remove('#post_data_start_title'); //영역 문제로 인한 "게시 기간:" 삭제
          var new_post_box = receive_list_post_one;
+         //해쉬이미지작업
+         var hash__ = MD5(receive_list_post_one['author_id']+"");
+         var data__ = new Identicon(hash__, img_options).toString();
+         $('#profile_img_id').attr("src", "data:image/png;base64," + data__);
          var new_post_box_date_start = new Date(new_post_box['reg_date']+'+0900');
          var new_post_box_date_end = new Date(new_post_box['exp_date']+'+0900');
          var post_year_start = new_post_box_date_start.getFullYear();
@@ -564,6 +568,10 @@ function get_post_content(post_id) {
          document.getElementById('share_button').append(" 보내기");
          
          var new_post_box = receive_list_post_one;
+         //해쉬이미지작업
+         var hash__ = MD5(receive_list_post_one['author_id']+"");
+         var data__ = new Identicon(hash__, img_options).toString();
+         $('#profile_img_id').attr("src", "data:image/png;base64," + data__);
          document.getElementById('post_modal_content').setAttribute('title', new_post_box['post_id']);
          var new_post_box_date_start = new Date(new_post_box['reg_date']+'+0900');
          var new_post_box_date_end = new Date(new_post_box['exp_date']+'+0900');
