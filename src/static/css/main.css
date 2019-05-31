@@ -806,37 +806,13 @@ border: none;
       z-index: 100;
 }
 
-
+.display_none
+{
+  display: none;
+}
 
 
 @media screen and (max-width: 1000px) {
-  body, html {
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-  /*box_fontsize 미디어쿼리*/
-  .box_css_basic {
-  position: absolute;
-  box-shadow: 0 0 3px #eeeeee;
-  border-radius: 6px;
-  cursor: pointer;
-  z-index: 250;
-  transition: 0.3s;
-  transition-timing-function: ease-in-out;
-  }
-  .box_css_text {
-    font-family: Raleway-Black;
-    text-shadow: 0 0.5px 1px #232323;
-    font-weight: lighter;
-    overflow: hidden;
-    word-break: break-all;
-    color: #444444;
-  }
-  .box_fa30 {font-size: 15px;} 
-  .box_fa40 {font-size: 18px;}
-  .box_fa60 {font-size: 24px;}
-  .box_fa80 {font-size: 30px;}
-
 
   .new_page {
     position: relative;
@@ -849,7 +825,6 @@ border: none;
   }
   .login_button {
     position: relative;
-    display: block;
     float: right;
     width: auto;
     height: auto;
@@ -857,7 +832,6 @@ border: none;
     margin-left: 0px;
   }
   .myinfo_button {
-    display: block;
     float: right;
     width: auto;
     height: auto;
@@ -885,19 +859,17 @@ border: none;
       
   }
   .board1 {
-    position: relative;
-    width: 99%;
-    height: 92%;
     background-color: white;
-    opacity: 1;
-    background-size: cover;
-    position: absolute;
-    top: 7%;
-    left: 0.5%;
-    box-shadow: 0px 0px 8px #888888;
-    border-radius: 6px;
-    z-index: 100;
-    overflow-y: auto;
+        opacity: 1;
+        background-size: cover;
+        position: absolute;
+        width: 99%;
+        height: 92%;
+        top: 7%;
+        left: 0.5%;
+        box-shadow: 0px 0px 8px #888888;
+        border-radius: 6px;
+        z-index: 100;
   }
   .board-title
   {
@@ -945,6 +917,10 @@ border: none;
     cursor: default;
     transition: 0.7s;
   }
+  .box_fa30 {font-size: 14px;} 
+  .box_fa40 {font-size: 15px;}
+  .box_fa60 {font-size: 20px;}
+  .box_fa80 {font-size: 30px;}
 }
 
 

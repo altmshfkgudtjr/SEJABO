@@ -516,10 +516,21 @@ function get_post_content(post_id) {
          document.getElementById('post_content_content').appendChild(document.createElement("br"));
          document.getElementById('post_content_content').append(new_post_box['content']);
          if (new_post_box['url'] == '0') {
-            $("a").remove('#'+post_content_url['id']);
-            document.getElementById('post_content_content').style.height = '300px';
+            $("a").remove('#post_content_url');
+            document.getElementById('post_content_content').style.height = '340px';
          }
-         else{ 
+         else{
+            if (document.getElementById('post_content_url') == null){
+               var post_content_url = document.createElement("a");
+               var post_content_url_i = document.createElement("i");
+               post_content_url.setAttribute('id', 'post_content_url');
+               post_content_url.setAttribute('class', 'post_content_url');
+               post_content_url.setAttribute('target', '_blank');
+               post_content_url_i.setAttribute('class', 'fas fa-external-link-alt');
+               post_content_url.appendChild(post_content_url_i);
+               post_content_url.append("외부링크 바로가기");
+               $('#post_content_good').before(post_content_url);
+            }
             document.getElementById('post_content_url').setAttribute('href', new_post_box['url']);
          }
          var post_like_count = new_post_box['like_count']*1;
@@ -527,18 +538,9 @@ function get_post_content(post_id) {
          document.getElementById('post_content_good').prepend(post_like_count+'  ');
          document.getElementById('post_content_bad').prepend(post_dislike_count+'   ');
          if (new_post_box['img_url'] == '0'){
-            document.getElementById('post_content_good').style.left = "0px";
             $('div').remove('#post_content_img');   //이미지 영역 삭제
-            document.getElementById('post_modal_content').style.width="95%";
-            document.getElementById('post_content_text').style.width="100%";
-            document.getElementById('post_top').style.width="70%";
-            document.getElementById('share_button').style.marginLeft="5px";
-            document.getElementById('share_button').style.marginTop="7px";
-            document.getElementById('post_data_start').style.marginLeft="15%";
-            document.getElementById('post_content_text').style.paddingLeft="10px";
          }
          else{
-            document.getElementById('post_content_good').style.left = "0px";
             document.getElementById('post_content_img_image').setAttribute('src', new_post_box['img_url']);
          }
       }
@@ -580,7 +582,7 @@ function get_post_content(post_id) {
             document.getElementById('post_content_text').style.paddingLeft="30px";
          }
          else{
-            document.getElementById('post_content_good').style.left = "13px";
+            document.getElementById('post_content_good').style.left = "30px";
             document.getElementById('post_content_img_image').setAttribute('src', new_post_box['img_url']);
          }
       }
@@ -590,100 +592,194 @@ function get_post_content(post_id) {
 
 //포스트 모달 초기화 함수
 function remove_post_content() {
-   //보내기 글자 없애기
-   $('#share_button').empty();
-   var share_button_icon = document.createElement("i");
-   share_button_icon.setAttribute("class", 'fas fa-clone');
-   document.getElementById('share_button').appendChild(share_button_icon);
-   //profile_title 원상복구 작업
-   $("#profile_title").empty();
-   //post_content_content 원상복구 작업
-   document.getElementById('post_content_content').style.height = '380px';
-   //post_content_text 원상복구 작업
-   document.getElementById('post_content_text').style.paddingLeft="30px";
-   //post_content_url 추가작업
-   if (document.getElementById('post_content_url') == undefined){
-      var post_content_url = document.createElement("a");
-      var post_content_url_i = document.createElement("i");
-      post_content_url.setAttribute('id', 'post_content_url');
-      post_content_url.setAttribute('class', 'post_content_url');
-      post_content_url.setAttribute('target', '_blank');
-      post_content_url_i.setAttribute('class', 'fas fa-external-link-alt');
-      post_content_url.appendChild(post_content_url_i);
-      post_content_url.append("외부링크 바로가기");
-      document.getElementById('post_content_text').appendChild(post_content_url);
+   if (navigator.platform) {
+      if (filter.indexOf(navigator.platform.toLowerCase()) < 0) { //==모바일버젼
+         //보내기 글자 없애기
+         $('#share_button').empty();
+         var share_button_icon = document.createElement("i");
+         share_button_icon.setAttribute("class", 'fas fa-clone');
+         document.getElementById('share_button').appendChild(share_button_icon);
+         //profile_title 원상복구 작업
+         $("#profile_title").empty();
+         //post_content_content 원상복구 작업
+         document.getElementById('post_content_content').style.height = '300px';
+         //post_content_text 원상복구 작업
+         document.getElementById('post_content_text').style.paddingLeft="10px";
+         //post_content_url 추가작업
+         if (document.getElementById('post_content_url') == undefined){
+            var post_content_url = document.createElement("a");
+            var post_content_url_i = document.createElement("i");
+            post_content_url.setAttribute('id', 'post_content_url');
+            post_content_url.setAttribute('class', 'post_content_url');
+            post_content_url.setAttribute('target', '_blank');
+            post_content_url_i.setAttribute('class', 'fas fa-external-link-alt');
+            post_content_url.appendChild(post_content_url_i);
+            post_content_url.append("외부링크 바로가기");
+            $('id_content_good').before(post_content_url);
+         }
+         //post_modal_content 원상복구 작업
+         document.getElementById('post_modal_content').style.width="95%";
+         //post_content_text 원상복구 작업
+         document.getElementById('post_content_text').style.width="100%";
+         //post_top 원상복구 작업
+         document.getElementById('post_top').style.width="73%";
+         //share_button 원상복구 작업
+         document.getElementById('share_button').style.marginLeft="10px";
+         document.getElementById('share_button').style.marginTop="15px";
+         //post_content_img 원상복구 작업
+         if(document.getElementById('post_content_img') != undefined){
+            $('div').remove('#post_content_img');
+         }
+         var post_content_image = document.createElement('div');
+         post_content_image.setAttribute('class', 'post_content_img');
+         post_content_image.setAttribute('id', 'post_content_img');
+         document.getElementById('post_modal_content').appendChild(post_content_image);
+         $('#post_content_text').before(post_content_image);
+         //post_content_img_content 원상복구 작업
+         if(document.getElementById('post_content_img_content') != undefined){
+            $('div').remove('#post_content_img_content');
+         }
+         var post_content_imgContent = document.createElement('div');
+         post_content_imgContent.setAttribute('class', 'post_content_img_content');
+         post_content_imgContent.setAttribute('id', 'post_content_img_content');
+         document.getElementById('post_content_img').appendChild(post_content_imgContent);
+         //post_content_img_image 원상복구 작업
+         if(document.getElementById('post_content_img_image') != undefined){
+            $('img').remove('#post_content_img_image');
+         }
+         var post_content_imgImage = document.createElement('img');
+         post_content_imgImage.setAttribute('class', 'post_content_img_image');
+         post_content_imgImage.setAttribute('id', 'post_content_img_image');
+         post_content_imgImage.setAttribute('onmouseover', 'post_content_img_image_over();');
+         post_content_imgImage.setAttribute('onmouseout', 'post_content_img_image_out();');
+         document.getElementById('post_content_img_content').appendChild(post_content_imgImage);
+         //post_content_good,bad i 태그 원상복구 작업
+         $('#post_content_good').empty();
+         $('#post_content_bad').empty();
+         var like_symbol = document.createElement("i");
+         var bad_symbol = document.createElement("i");
+         like_symbol.setAttribute('class', 'fas fa-thumbs-up');
+         bad_symbol.setAttribute('class', 'fas fa-thumbs-up');
+         document.getElementById('post_content_good').appendChild(like_symbol);
+         document.getElementById('post_content_bad').appendChild(bad_symbol);
+         //post_top 내용물 원상복구 작업
+         $('div').remove('#post_data_start');
+         $('div').remove('#post_data_between');
+         $('div').remove('#post_data_end');
+         var post_dataStart = document.createElement('div');
+         var post_dataBetween = document.createElement('div');
+         var post_dataEnd = document.createElement('div');
+         post_dataStart.setAttribute('class', 'post_data_start');
+         post_dataBetween.setAttribute('class', 'post_data_between');
+         post_dataEnd.setAttribute('class', 'post_data_end');
+         post_dataStart.setAttribute('id', 'post_data_start');
+         post_dataBetween.setAttribute('id', 'post_data_between');
+         post_dataEnd.setAttribute('id', 'post_data_end');
+         document.getElementById('post_top').appendChild(post_dataStart);
+         document.getElementById('post_top').appendChild(post_dataBetween);
+         document.getElementById('post_data_between').append("~");
+         document.getElementById('post_top').appendChild(post_dataEnd);
+         //post_content_content 내용 원상복구 작업
+         $("#post_content_content").empty();
+      }
+      else {   //==PC 버젼
+         //보내기 글자 없애기
+         $('#share_button').empty();
+         var share_button_icon = document.createElement("i");
+         share_button_icon.setAttribute("class", 'fas fa-clone');
+         document.getElementById('share_button').appendChild(share_button_icon);
+         //profile_title 원상복구 작업
+         $("#profile_title").empty();
+         //post_content_content 원상복구 작업
+         document.getElementById('post_content_content').style.height = '380px';
+         //post_content_text 원상복구 작업
+         document.getElementById('post_content_text').style.paddingLeft="30px";
+         //post_content_url 추가작업
+         if (document.getElementById('post_content_url') == undefined){
+            var post_content_url = document.createElement("a");
+            var post_content_url_i = document.createElement("i");
+            post_content_url.setAttribute('id', 'post_content_url');
+            post_content_url.setAttribute('class', 'post_content_url');
+            post_content_url.setAttribute('target', '_blank');
+            post_content_url_i.setAttribute('class', 'fas fa-external-link-alt');
+            post_content_url.appendChild(post_content_url_i);
+            post_content_url.append("외부링크 바로가기");
+            document.getElementById('post_content_text').appendChild(post_content_url);
+         }
+         //post_modal_content 원상복구 작업
+         document.getElementById('post_modal_content').style.width="1300px";
+         //post_content_text 원상복구 작업
+         document.getElementById('post_content_text').style.width="50%";
+         //post_top 원상복구 작업
+         document.getElementById('post_top').style.width="800px";
+         //share_button 원상복구 작업
+         document.getElementById('share_button').style.marginLeft="30px";
+         document.getElementById('share_button').style.marginTop="30px";
+         //post_content_img 원상복구 작업
+         if(document.getElementById('post_content_img') != undefined){
+            $('div').remove('#post_content_img');
+         }
+         var post_content_image = document.createElement('div');
+         post_content_image.setAttribute('class', 'post_content_img');
+         post_content_image.setAttribute('id', 'post_content_img');
+         document.getElementById('post_modal_content').appendChild(post_content_image);
+         //post_content_img_content 원상복구 작업
+         if(document.getElementById('post_content_img_content') != undefined){
+            $('div').remove('#post_content_img_content');
+         }
+         var post_content_imgContent = document.createElement('div');
+         post_content_imgContent.setAttribute('class', 'post_content_img_content');
+         post_content_imgContent.setAttribute('id', 'post_content_img_content');
+         document.getElementById('post_content_img').appendChild(post_content_imgContent);
+         //post_content_img_image 원상복구 작업
+         if(document.getElementById('post_content_img_image') != undefined){
+            $('img').remove('#post_content_img_image');
+         }
+         var post_content_imgImage = document.createElement('img');
+         post_content_imgImage.setAttribute('class', 'post_content_img_image');
+         post_content_imgImage.setAttribute('id', 'post_content_img_image');
+         post_content_imgImage.setAttribute('onmouseover', 'post_content_img_image_over();');
+         post_content_imgImage.setAttribute('onmouseout', 'post_content_img_image_out();');
+         document.getElementById('post_content_img_content').appendChild(post_content_imgImage);
+         //post_content_good,bad i 태그 원상복구 작업
+         $('#post_content_good').empty();
+         $('#post_content_bad').empty();
+         var like_symbol = document.createElement("i");
+         var bad_symbol = document.createElement("i");
+         like_symbol.setAttribute('class', 'fas fa-thumbs-up');
+         bad_symbol.setAttribute('class', 'fas fa-thumbs-up');
+         document.getElementById('post_content_good').appendChild(like_symbol);
+         document.getElementById('post_content_bad').appendChild(bad_symbol);
+         //post_top 내용물 원상복구 작업
+         if (document.getElementById('post_data_start_title') != undefined){
+            $('div').remove('#post_data_start_title');
+         }
+         $('div').remove('#post_data_start');
+         $('div').remove('#post_data_between');
+         $('div').remove('#post_data_end');
+         var post_data_startTitle = document.createElement('div');
+         var post_dataStart = document.createElement('div');
+         var post_dataBetween = document.createElement('div');
+         var post_dataEnd = document.createElement('div');
+         post_data_startTitle.setAttribute('class', 'post_data_start_title');
+         post_dataStart.setAttribute('class', 'post_data_start');
+         post_dataBetween.setAttribute('class', 'post_data_between');
+         post_dataEnd.setAttribute('class', 'post_data_end');
+         post_data_startTitle.setAttribute('id', 'post_data_start_title');
+         post_dataStart.setAttribute('id', 'post_data_start');
+         post_dataBetween.setAttribute('id', 'post_data_between');
+         post_dataEnd.setAttribute('id', 'post_data_end');
+         document.getElementById('post_top').appendChild(post_data_startTitle);
+         document.getElementById('post_data_start_title').append("게시 기간 :");
+         document.getElementById('post_top').appendChild(post_dataStart);
+         document.getElementById('post_top').appendChild(post_dataBetween);
+         document.getElementById('post_data_between').append("~");
+         document.getElementById('post_top').appendChild(post_dataEnd);
+         //post_content_content 내용 원상복구 작업
+         $("#post_content_content").empty();
+      }
    }
-   //post_modal_content 원상복구 작업
-   document.getElementById('post_modal_content').style.width="1300px";
-   //post_content_text 원상복구 작업
-   document.getElementById('post_content_text').style.width="50%";
-   //post_top 원상복구 작업
-   document.getElementById('post_top').style.width="800px";
-   //share_button 원상복구 작업
-   document.getElementById('share_button').style.marginLeft="30px";
-   document.getElementById('share_button').style.marginTop="30px";
-   //post_content_img 원상복구 작업
-   if(document.getElementById('post_content_img') != undefined){
-      $('div').remove('#post_content_img');
-   }
-   var post_content_image = document.createElement('div');
-   post_content_image.setAttribute('class', 'post_content_img');
-   post_content_image.setAttribute('id', 'post_content_img');
-   document.getElementById('post_modal_content').appendChild(post_content_image);
-   //post_content_img_content 원상복구 작업
-   if(document.getElementById('post_content_img_content') != undefined){
-      $('div').remove('#post_content_img_content');
-   }
-   var post_content_imgContent = document.createElement('div');
-   post_content_imgContent.setAttribute('class', 'post_content_img_content');
-   post_content_imgContent.setAttribute('id', 'post_content_img_content');
-   document.getElementById('post_content_img').appendChild(post_content_imgContent);
-   //post_content_img_image 원상복구 작업
-   if(document.getElementById('post_content_img_image') != undefined){
-      $('img').remove('#post_content_img_image');
-   }
-   var post_content_imgImage = document.createElement('img');
-   post_content_imgImage.setAttribute('class', 'post_content_img_image');
-   post_content_imgImage.setAttribute('id', 'post_content_img_image');
-   post_content_imgImage.setAttribute('onmouseover', 'post_content_img_image_over();');
-   post_content_imgImage.setAttribute('onmouseout', 'post_content_img_image_out();');
-   document.getElementById('post_content_img_content').appendChild(post_content_imgImage);
-   //post_content_good,bad i 태그 원상복구 작업
-   $('#post_content_good').empty();
-   $('#post_content_bad').empty();
-   var like_symbol = document.createElement("i");
-   var bad_symbol = document.createElement("i");
-   like_symbol.setAttribute('class', 'fas fa-thumbs-up');
-   bad_symbol.setAttribute('class', 'fas fa-thumbs-up');
-   document.getElementById('post_content_good').appendChild(like_symbol);
-   document.getElementById('post_content_bad').appendChild(bad_symbol);
-   //post_top 내용물 원상복구 작업
-   if (document.getElementById('post_data_start_title') != undefined){
-      $('div').remove('#post_data_start_title');
-   }
-   $('div').remove('#post_data_start');
-   $('div').remove('#post_data_between');
-   $('div').remove('#post_data_end');
-   var post_data_startTitle = document.createElement('div');
-   var post_dataStart = document.createElement('div');
-   var post_dataBetween = document.createElement('div');
-   var post_dataEnd = document.createElement('div');
-   post_data_startTitle.setAttribute('class', 'post_data_start_title');
-   post_dataStart.setAttribute('class', 'post_data_start');
-   post_dataBetween.setAttribute('class', 'post_data_between');
-   post_dataEnd.setAttribute('class', 'post_data_end');
-   post_data_startTitle.setAttribute('id', 'post_data_start_title');
-   post_dataStart.setAttribute('id', 'post_data_start');
-   post_dataBetween.setAttribute('id', 'post_data_between');
-   post_dataEnd.setAttribute('id', 'post_data_end');
-   document.getElementById('post_top').appendChild(post_data_startTitle);
-   document.getElementById('post_data_start_title').append("게시 기간 :");
-   document.getElementById('post_top').appendChild(post_dataStart);
-   document.getElementById('post_top').appendChild(post_dataBetween);
-   document.getElementById('post_data_between').append("~");
-   document.getElementById('post_top').appendChild(post_dataEnd);
-   //post_content_content 내용 원상복구 작업
-   $("#post_content_content").empty();
+   
 }
 
 

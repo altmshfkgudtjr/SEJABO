@@ -42,17 +42,15 @@ def auto_remove():
 	db.close()
 	print("Remove Complete")
 
-	
 ########## 공통 사용 함수 ##########
 def get_today():
 	now = datetime.datetime.now()
 	date = now.strftime("%Y-%m-%d")
 	return date
 
-def get_default_day(day):
-	now = datetime.datetime.now() - datetime.timedelta(days = day)
-	date = now.strftime("%Y-%m-%d %H:%M:%S")
-
+def get_add_day(day):
+	now = datetime.datetime.now() + datetime.timedelta(days = day)
+	date = now.strftime("%Y-%m-%d")
 	return date
 
 def str_to_unix(string):
