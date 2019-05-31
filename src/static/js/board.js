@@ -319,12 +319,12 @@ function addElement (return_json) {
                   newDiv.style.backgroundImage = newImgurl;
                   newDiv.classList.add("box_css_img");
                }
+               //onclick 속성 추가
+               newDiv.setAttribute("onclick", "post_button_click("+receive_list[n-1]['post_id']+");");
                n+=1;
                //박스 애니메이션 추가
                newDiv.classList.add("magictime");
                newDiv.classList.add("foolishIn");
-               //onclick 속성 추가
-               newDiv.setAttribute("onclick", "post_button_click("+newDiv.id+");");
                box_out.push(newDiv);
             }
             else {
@@ -440,12 +440,12 @@ function addElement (return_json) {
                      newDiv.style.backgroundImage = newImgurl;
                      newDiv.classList.add("box_css_img");
                   }
+                  //onclick 속성 추가
+                  newDiv.setAttribute("onclick", "post_button_click("+receive_list[n-1]['post_id']+");");
                   //애니메이션 클래스 추가
                   n+=1;
                   newDiv.classList.add("magictime");
                   newDiv.classList.add("foolishIn");
-                  //onclick 속성 추가
-                  newDiv.setAttribute("onclick", "post_button_click("+newDiv.id+");");
                   box_out.push(newDiv);
                }
                else{
@@ -499,23 +499,31 @@ function refleshPage(now_build){
 
 //포스트 모달 콘텐츠 추가 및 제거
 function get_post_content(post_id) {
-   var post_id_number = post_id['id'];
-   for (var i =0; i< box_done.length; i++){
-      var box_done_id = box_done[i];
-      if (post_id_number == box_done_id[4]) {
+   for (var i =0; i< receive_list_all.length; i++){
+      var receive_list_post_one = receive_list_all[i];
+      if (post_id == receive_list_post_one['post_id']) {
+         i-=1;
          break;
       }
    }
    if (navigator.platform) {
       if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
          //현재 모달 어느 박스인지 식별자 추가함 - 모바일
-         console.log(new_post_box);
-         document.getElementById('post_modal_content').setAttribute('title', new_post_box['post_id']);
-         
          $('div').remove('#post_data_start_title'); //영역 문제로 인한 "게시 기간:" 삭제
-         var new_post_box = receive_post_list[i];
-         document.getElementById('post_data_start').append(new_post_box['reg_date']);
-         document.getElementById('post_data_end').append(new_post_box['exp_date']);
+         var new_post_box = receive_list_post_one;
+         var new_post_box_date_start = new Date(new_post_box['reg_date']+'+0900');
+         var new_post_box_date_end = new Date(new_post_box['exp_date']+'+0900');
+         var post_year_start = new_post_box_date_start.getFullYear();
+         var post_month_start = new_post_box_date_start.getMonth();
+         var post_date_start = new_post_box_date_start.getDate();
+         var post_now_start = post_year_start+'-'+post_month_start+'-'+post_date_start;
+         var post_year_end = new_post_box_date_end.getFullYear();
+         var post_month_end = new_post_box_date_end.getMonth();
+         var post_date_end = new_post_box_date_end.getDate();
+         var post_now_end = post_year_end+'-'+post_month_end+'-'+post_date_end;
+         document.getElementById('post_modal_content').setAttribute('title', new_post_box['post_id']);
+         document.getElementById('post_data_start').append(post_now_start);
+         document.getElementById('post_data_end').append(post_now_end);
          document.getElementById('profile_title').append(new_post_box['title']);
          document.getElementById('post_content_content').append("제목 : ");
          document.getElementById('post_content_content').append(new_post_box['title']);
@@ -553,12 +561,23 @@ function get_post_content(post_id) {
       }
       else {
          //현재 모달 어느 박스인지 식별자 추가함 - PC버젼
-         document.getElementById('post_modal_content').setAttribute('title', new_post_box['post_id']);
          document.getElementById('share_button').append(" 보내기");
          
-         var new_post_box = receive_post_list[i];
-         document.getElementById('post_data_start').append(new_post_box['reg_date']);
-         document.getElementById('post_data_end').append(new_post_box['exp_date']);
+         var new_post_box = receive_list_post_one;
+         document.getElementById('post_modal_content').setAttribute('title', new_post_box['post_id']);
+         var new_post_box_date_start = new Date(new_post_box['reg_date']+'+0900');
+         var new_post_box_date_end = new Date(new_post_box['exp_date']+'+0900');
+         var post_year_start = new_post_box_date_start.getFullYear();
+         var post_month_start = new_post_box_date_start.getMonth();
+         var post_date_start = new_post_box_date_start.getDate();
+         var post_now_start = post_year_start+'-'+post_month_start+'-'+post_date_start;
+         var post_year_end = new_post_box_date_end.getFullYear();
+         var post_month_end = new_post_box_date_end.getMonth();
+         var post_date_end = new_post_box_date_end.getDate();
+         var post_now_end = post_year_end+'-'+post_month_end+'-'+post_date_end;
+         document.getElementById('post_modal_content').setAttribute('title', new_post_box['post_id']);
+         document.getElementById('post_data_start').append(post_now_start);
+         document.getElementById('post_data_end').append(post_now_end);
          document.getElementById('profile_title').append(new_post_box['title']);
          document.getElementById('post_content_content').append("제목 : ");
          document.getElementById('post_content_content').append(new_post_box['title']);
@@ -566,7 +585,7 @@ function get_post_content(post_id) {
          document.getElementById('post_content_content').appendChild(document.createElement("br"));
          document.getElementById('post_content_content').append(new_post_box['content']);
          if (new_post_box['url'] == null) {
-            $("a").remove('#'+post_content_url['id']);
+            $("a").remove('#post_content_url');
             document.getElementById('post_content_content').style.height = '460px';
          }
          else{ 
@@ -792,7 +811,7 @@ function remove_post_content() {
 
 //클립보드 복사 함수
 function clipboardCopy() {
-   // 모든 포스트 리스트를 가져온다. rceive_list_all
+   // 모든 포스트 리스트를 가져온다. receive_list_all
    var now_id = document.getElementById('post_modal_content')['title'];
    
    for (var i=0; i<receive_list_all.length; i++){
