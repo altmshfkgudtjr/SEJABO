@@ -729,11 +729,11 @@
     transform: scale(1.06, 1.06);
     box-shadow: 0 0 6px #bbbbbb;
   }
-  .profile_img:hover .idenfication_test{
+  .profile_img:hover .profile_img_id{
     transform: scale(1.06, 1.06);
   }
   /*idenfication 테스트용*/
-  #idenfication_test
+  #profile_img_id
   {
     width: 80px;
     height: 80px;
@@ -1266,11 +1266,11 @@
       transform: scale(1.06, 1.06);
       box-shadow: 0 0 6px #bbbbbb;
     }
-    .profile_img:hover .idenfication_test{
+    .profile_img:hover .profile_img_id{
       transform: scale(1.06, 1.06);
     }
     /*idenfication 테스트용*/
-    #idenfication_test
+    #profile_img_id
     {
       width: 50px;
       height: 50px;

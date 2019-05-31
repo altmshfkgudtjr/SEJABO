@@ -112,7 +112,7 @@
 					<div class="myinfo_user_major_title"><span>학과</span></div>
 					<div id="myinfo_user_major_major" class="myinfo_user_major_major">컴퓨터공학과</div>
 				</div>
-				<div id="myinfo_user_post" class="myinfo_user_post">
+				<div id="myinfo_user_post" class="myinfo_user_post" style="display: none">
 					<div id="myinfo_user_post_title" class="myinfo_user_post_title">글 제목XXXXXXXX</div>
 					<div id="myinfo_user_post_content" class="myinfo_user_post_content">글 내용XXXXXXXXX</div>
 					<div id="myinfo_user_post_fix" class="myinfo_user_post_fix" title="수정하기"><i class="fas fa-edit"></i>
@@ -120,7 +120,7 @@
 					<div id="myinfo_user_post_delete" class="myinfo_user_post_delete" title="삭제하기"><i
 							class="fas fa-trash"></i></div>
 				</div>
-				<div id="myinfo_user_post_not" class="myinfo_user_post_not" style="display: none">
+				<div id="myinfo_user_post_not" class="myinfo_user_post_not">
 					<div class="myinfo_user_post_not_img"><i class="fas fa-walking"></i></div>
 					<div id="myinfo_user_post_write" class="myinfo_user_post_write">
 						포스트 작성&nbsp;<i class="fas fa-pen-nib"></i>
@@ -170,8 +170,7 @@
 			<!--내용영역-->
 			<div id="post_content_text" class="post_content_text">
 				<div class="profile_img">
-					<!--지우셈-->
-					<img id="idenfication_test" class="idenfication_test" src="" alt="Avatar">
+					<img id="profile_img_id" class="profile_img_id" src="" alt="Avatar">
 				</div>
 				<div id="profile_title" class="profile_title"></div>
 				<div class="profile_hr"></div>
@@ -406,10 +405,13 @@
 <!-- Bootstrap JS -->
 <script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
 
-
-
 <!-- ?? -->
 <script src="../static/vendor/select2/select2.min.js"></script>
+
+<!-- Identification JS -->
+<script src="../static/js/pnglib.js"></script>
+<script src="../static/js/identicon.js"></script>
+<script src="../static/js/identification.js"></script>
 
 <!-- AJAX JS -->
 <script src="../static/js/ajax.js"></script>
@@ -427,11 +429,6 @@
 
 <!-- Snackbar JS -->
 <script src="../static/js/snackbar.js"></script>
-
-<!-- Identification JS -->
-<script src="../static/js/pnglib.js"></script>
-<script src="../static/js/identicon.js"></script>
-<script src="../static/js/identification.js"></script>
 
 <!-- SliderBar JS -->
 <script src="../static/js/slider_bar_dynamic.js"></script>

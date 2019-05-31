@@ -34,10 +34,15 @@ function myinfo_user_page(json)
     if(json['my_post'] == null)
     {
         //작성한 글이 없으면 작성화면 표시.
+        document.getElementById("myinfo_user_post").style.display = "none";
         document.getElementById("myinfo_user_post_not").style.display = "block";
     }
     else
     {
+        //작성한 글이 있으면 내 게시글 표시.
+        document.getElementById("myinfo_user_post").style.display = "block";
+        document.getElementById("myinfo_user_post_not").style.display = "none";
+
         //내정보 -> 내 게시글 -> 제목 출력
         $('#myinfo_user_post_title').text(json['my_post']['title']);
 
