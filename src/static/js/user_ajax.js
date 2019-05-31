@@ -2,8 +2,8 @@ var user_ID; //사용자 아이디
 var user_NAME; //사용자 이름
 var user_MAJOR; //사용자 학과
 var user_POST; //사용자 게시글
-var user_LIKE_POSTS; //사용자 좋아요 게시글
-var user_DISLIKE_POSTS; //사용자 싫어요 게시글
+var user_LIKE_POSTS = new Array; //사용자 좋아요 게시글
+var user_DISLIKE_POSTS = []; //사용자 싫어요 게시글
 
 function myinfo_user_page(json)
 {
@@ -11,12 +11,10 @@ function myinfo_user_page(json)
     user_NAME = json['user_name'];
     user_MAJOR = json['major_name'];
     user_POST = json['my_post'];
-    user_LIKE_POSTS = json['like_posts'];
-    user_DISLIKE_POSTS = json['dislike_posts'];
 
     //로그인 -> 내정보 버튼 변경
-    $('#myinfo_button').removeClass('display_none');
-    $('#login_button').addClass('display_none');
+    $('#myinfo_button').css('display', 'block');
+    $('#login_button').css('display', 'none');
 
     //내정보 -> identication
     var idf_user_hash = MD5(user_ID);
@@ -47,6 +45,19 @@ function myinfo_user_page(json)
         $('#myinfo_user_post_content').text(json['my_post']['content']);
 
     }
+    
+    //내정보 -> 좋아요 게시글 리스트 생성
+    for(var i=0; i < json['like_posts'].length; i++)
+    {
+        user_LIKE_POSTS.push(json['like_posts'][i]);
+    }
+
+    for(var i=0; i < json['dislike_posts'].length; i++)
+    {
+        user_DISLIKE_POSTS.push(json['dislike_posts'][i]);
+    }
+    
+    
 }
 
 
@@ -95,12 +106,13 @@ function sejabo_login(){
         }
         else if(json['result'] == "success")
         {
+            //토큰 생성
             localStorage.setItem('sejabo_token', json['access_token']);
             
-            $('#myinfo_button').removeClass('display_none');
-            
-            $('#login_button').addClass('display_none');
+            //마이 페이지 생성
+            myinfo_user_page(json)
 
+            //로그인 모달 닫기
             login_modal.style.display = "none";
             $('#login_modal_content').removeClass("magictime");
             $('#login_modal_content').removeClass("spaceInDown");

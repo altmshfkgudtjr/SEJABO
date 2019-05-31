@@ -114,11 +114,11 @@ myinfo_button.onclick = function () {
   $('#myinfo_modal_content').addClass("spaceInDown");
   if (myinfo_post_good_cnt == 1){
     remove_myinfo_post_contents();
-    likeDivMake();
+    likeDivMake(user_LIKE_POSTS);
   }
   else if (myinfo_post_bad_cnt == 1){
     remove_myinfo_post_contents();
-    likeDivMakeNot();
+    //likeDivMakeNot(user_DISLIKE_POSTS);
   }
 }
 // When the user clicks on <span> (x), close the modal
@@ -154,7 +154,7 @@ document.getElementById('myinfo_post_good_button').onclick = function() {
     myinfo_post_good_cnt = 1;
     myinfo_post_bad_cnt = 0;
     remove_myinfo_post_contents();
-    likeDivMake();
+    likeDivMake(user_LIKE_POSTS);
   }
 }
 //싫어요 게시물 눌렀을 시
@@ -165,7 +165,7 @@ document.getElementById('myinfo_post_bad_button').onclick = function() {
     myinfo_post_good_cnt = 0;
     myinfo_post_bad_cnt = 1;
     remove_myinfo_post_contents();
-    likeDivMakeNot();
+    //likeDivMakeNot(user_DISLIKE_POSTS);
   }
 }
 //싫어요 또는 좋아요 게시물 클릭 시

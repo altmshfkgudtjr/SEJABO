@@ -832,10 +832,11 @@ border: none;
     margin-left: 0px;
   }
   .myinfo_button {
+    position: relative;
     float: right;
     width: auto;
     height: auto;
-    margin: 0.5% 0.5%;
+    margin: 2% 1.5%;
     margin-left: 0px;
   }
   .search_button

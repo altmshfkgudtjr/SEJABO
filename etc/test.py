@@ -2,13 +2,13 @@ import requests
 import json
 from pprint import pprint
 #shin10256
-token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTg4Njk2ODgsIm5iZiI6MTU1ODg2OTY4OCwianRpIjoiNWFmNDMwODktZjk5Yy00NmM4LTk4MjAtOWVkMmM2YmM3ZTllIiwiaWRlbnRpdHkiOiIxNjAxMTA4OSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.kyIeJIZ6tyzyXXiWpVE4zkOup7XqBrt32XwbtzyGP1U"
+token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTkzMjMzMDAsIm5iZiI6MTU1OTMyMzMwMCwianRpIjoiZTgxNjRkNjgtOTE1Zi00OWRjLWEyNmItOGFmNzljZWNiZWMzIiwiaWRlbnRpdHkiOiIxNjAxMTA5MiIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.MRZIIYfhWIqV8GkCPwlndk5SjEDSGQdLTxfkZUD2IDw"
 
 header = {
 	'Authorization':"Bearer " + token
 }
 #Debug Here
-url = "http://localhost/mod_post"
+url = "http://localhost/like/1/1"
 data = {
 #POST
 "id":"16011089",
@@ -19,8 +19,8 @@ data = {
 }
 ######
 #GET 방식
-#html = requests.get(url, headers =header, data = data).content
+html = requests.get(url, headers =header, data = data).content
 #POST 방식
-html = requests.post(url, headers =header, data = data).content
+#html = requests.post(url, headers =header, data = data).content
 html = json.loads(html)
 pprint(html)
