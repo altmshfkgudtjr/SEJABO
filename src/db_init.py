@@ -56,6 +56,7 @@ def init_db():
 			try:
 				cursor.execute(line)
 			except Exception as e:
+				print(line)
 				print(e)
 				continue
 		#test_case
@@ -66,6 +67,7 @@ def init_db():
 			try:
 				cursor.execute(line)
 			except Exception as e:
+				print(line)
 				print(e)
 				continue
 	db.commit()

@@ -917,6 +917,23 @@ border: none;
     cursor: default;
     transition: 0.7s;
   }
+  .box_css_basic {
+	  position: absolute;
+	  box-shadow: 0 0 3px #eeeeee;
+	  border-radius: 6px;
+	  cursor: pointer;
+	  z-index: 250;
+	  transition: 0.3s;
+	  transition-timing-function: ease-in-out;
+	}
+	.box_css_text {
+	  font-family: Raleway-Black;
+	  text-shadow: 0 0px 0px rgba(0,0,0,0);
+	  font-weight: lighter;
+	  overflow: hidden;
+	  word-break: break-all;
+	  color: #444444;
+	}
   .box_fa30 {font-size: 14px;} 
   .box_fa40 {font-size: 15px;}
   .box_fa60 {font-size: 20px;}
