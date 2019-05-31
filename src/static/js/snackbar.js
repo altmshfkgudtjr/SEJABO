@@ -19,5 +19,4 @@ function show_snackbar(temp2) {
         $(temp2).removeClass("show");
         $(temp2).remove();
     }, 3000);
-
 }

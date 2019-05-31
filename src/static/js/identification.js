@@ -10,4 +10,3 @@ var img_options = {
 var hash = MD5('asdfsdafsdafsdafa');
 var data = new Identicon(hash, img_options).toString();
 $('#idenfication_test').attr("src", "data:image/png;base64," + data);
-

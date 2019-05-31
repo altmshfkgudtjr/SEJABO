@@ -138,6 +138,7 @@ window.onclick = function (event) {
 // 로그아웃 버튼 눌렀을 시
 myinfo_logout.onclick = function() {
   snackbar("정상적으로 로그아웃이 됬습니다.");
+  localStorage.removeItem("sejabo_token");
   myinfo_modal.style.display = "none";
   $('#login_button').css('display', 'block');
   $('#myinfo_button').css('display', 'none');

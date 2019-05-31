@@ -509,6 +509,7 @@ function get_post_content(post_id) {
    if (navigator.platform) {
       if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
          //현재 모달 어느 박스인지 식별자 추가함 - 모바일
+         console.log(new_post_box);
          document.getElementById('post_modal_content').setAttribute('title', new_post_box['post_id']);
          
          $('div').remove('#post_data_start_title'); //영역 문제로 인한 "게시 기간:" 삭제
