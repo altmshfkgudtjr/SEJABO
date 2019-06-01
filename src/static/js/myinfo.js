@@ -78,6 +78,7 @@ function likeDivMakeNot(json_dislike_posts) {
 
 
 
+
  //좋아요 싫어요 게시물 div 비워주는 함수
  function remove_myinfo_post_contents() {
     $('#myinfo_post_bigbox').empty();
@@ -208,5 +209,23 @@ function likeDivMakeNot(json_dislike_posts) {
          }
       }
    }
-        
- }
+}
+
+//내가 작성한 글 클릭할 시
+function get_myinfo_mypost() {
+   var user_post_id_number = $('#myinfo_user_post').attr('title');
+   myinfo_mypost_click(user_post_id_number);
+}
+//내가 작성한 게시글 클릭 시
+function myinfo_mypost_click(post_id) {
+  //내정보모달을 끔
+  myinfo_modal.style.display = "none";
+  $('#myinfo_modal_content').removeClass("magictime");
+  $('#myinfo_modal_content').removeClass("spaceInDown");
+  //포스트모달을 킴
+  post_modal.style.display = "block";
+  $('#post_modal_content').addClass("magictime");
+  $('#post_modal_content').addClass("spaceInDown");
+  //정보를 가져옴
+  get_myinfo_post_modal(post_id);
+}

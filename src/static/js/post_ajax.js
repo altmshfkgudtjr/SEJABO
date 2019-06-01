@@ -77,9 +77,16 @@ function post_edit() {
     var post_edit_textarea = $('#post_edit_textarea').val();
     var post_edit_URL = $('#post_edit_URL').val();
     
+    if(post_edit_URL.length != 0 && post_edit_URL.slice(0, 4) != "http")
+    {
+      alert("첨부링크는 Full URL로 기입해주세요. (http 포함)");
+      return;
+    }
+
     formData.append('title', post_edit_title_real);
     formData.append('content', post_edit_textarea);
     formData.append('url', post_edit_URL);
+
 
 
     if (post_edit_title_real.length < 100) {

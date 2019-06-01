@@ -332,19 +332,29 @@ $('#post_admin_next_button').click(function(){
   if(post_admin_cnt == 0)
   {
     var title_len = $('#post_creat_title').val();
-    var textarea_len = $('#post_creat_textarea').val();
+    var post_creat_file_name = $('#post_creat_file').val();
     var post_creat_URL = $('#post_creat_URL').val();
+
+    if(post_creat_file_name.length != 0) 
+    {
+      var extension = post_creat_file_name.split('.')[1];
+      if(extension != 'jpg' && extension != 'png' && extension != 'jpeg' && extension != 'gif')
+      {
+        alert("파일 확장자는 jpg / png / jpeg / gif 만 업로드 가능합니다.");
+        return;
+      }
+    }
 
     if(title_len.length >= 100) 
     {
       alert("제목의 길이는 100자 미만입니다.");
-      post_admin_cnt--;
+      return;
     }
 
     if(post_creat_URL.length != 0 && post_creat_URL.slice(0, 4) != "http")
     {
       alert("첨부링크는 Full URL로 기입해주세요. (http 포함)");
-      post_admin_cnt--;
+      return;
     }
   }
   post_admin_cnt++;
