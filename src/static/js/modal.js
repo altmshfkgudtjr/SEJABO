@@ -213,9 +213,54 @@ function post_button_click(post_id) {
   post_modal.style.display = "block";
   $('#post_modal_content').addClass("magictime");
   $('#post_modal_content').addClass("spaceInDown");
-  get_post_content(post_id);
+  
+  //좋아요 기본값 설정
   like_button_click_cnt = 0;
   hate_button_click_cnt = 0;
+  if (localStorage.getItem('sejabo_token') == null){
+    get_post_content(post_id);
+  }
+  else {
+    var like_or_dislik_post = 0;
+    var a_jax = A_JAX('/userinfo', "GET", localStorage.getItem('sejabo_token'));
+    $.when(a_jax).done(function(){
+          var json = a_jax.responseJSON;
+          if(json['result'] == "success")
+          {
+              json_like = json['like_posts'];
+              json_dislike = json['dislike_posts'];
+              for(var j = 0; j< json_like.length; j++){
+                if (post_id == json_like[j]['post_id']){
+                  like_button_click_cnt = 1;
+                  hate_button_click_cnt = 0;
+                  like_or_dislik_post = 1;
+                  get_post_content(post_id);
+                  break;
+                }
+              }
+              for(var j = 0; j< json_dislike.length; j++){
+                if (post_id == json_dislike[j]['post_id']){
+                  hate_button_click_cnt = 1;
+                  like_button_click_cnt = 0;
+                  like_or_dislik_post = 1;
+                  get_post_content(post_id);
+                  break;
+                }
+              }
+              if(like_or_dislik_post == 0){
+                get_post_content(post_id);
+              }
+          }
+          else if(json['result'] == "bad request")
+          {
+              alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+          }
+          else {
+              alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+          }
+      });
+  }
+  
 }
 // When the user clicks on <span> (x), close the modal
 post_modal_close.onclick = function () {
@@ -338,6 +383,7 @@ $('#post_admin_next_button').click(function(){
     if(post_creat_file_name.length != 0) 
     {
       var extension = post_creat_file_name.split('.')[1];
+      extension = extension.toLowerCase();
       if(extension != 'jpg' && extension != 'png' && extension != 'jpeg' && extension != 'gif')
       {
         alert("파일 확장자는 jpg / png / jpeg / gif 만 업로드 가능합니다.");

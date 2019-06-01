@@ -598,7 +598,7 @@ box-shadow: 0 0 8px  #888888;
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 900; /* Sit on top */
-  padding-top: 100; /* Location of the box */
+  padding-top: 100px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -695,6 +695,7 @@ box-shadow: 0 0 8px  #888888;
 .post_content_img_image {
   height: auto;
   max-width: 80%;
+  height: 90%;
   background-size: cover;
   position: absolute;
   left: 50%;
@@ -742,6 +743,7 @@ box-shadow: 0 0 8px  #888888;
   width: 80px;
   height: 80px;
   transition: 0.4s;
+  border-radius: 8px;
 }
 
 .profile_title {
@@ -798,17 +800,17 @@ box-shadow: 0 0 8px  #888888;
 }
 .post_content_good {
   position: absolute;
-  left: 20px;
   bottom: 60px;
   width: 280px;
   height: 60px;
   border-radius: 8px;
-  color: white;
+  border: 4px solid #A9F5A9;
+  color: #A9F5A9;
   font-size: 25px;
   padding: 10px;
   text-align: center;
-  background-color: #30A92C;
-  box-shadow: 0 0 8px #777777;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(0,0,0,0);
   cursor: pointer;
   transition: 0.6s;
 }
@@ -820,24 +822,47 @@ box-shadow: 0 0 8px  #888888;
   height: 60px;
   margin-left: 20px;
   border-radius: 8px;
-  color: white;
+  border: 4px solid #F6CED8;
+  color: #F6CED8;
   font-size: 25px;
   padding: 10px;
   text-align: center;
-  background-color: #E93333;
-  box-shadow: 0 0 8px #777777;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(0,0,0,0);
   cursor: pointer;
   transition: 0.6s;
-}
+}/*
 .post_content_good:hover {
+  color: white;
   background-color: #068E06;
   box-shadow: 0 0 8px #fefefe;
 }
 .post_content_bad:hover {
-  background-color: #B60B0B;
+  color: white;
+  background-color: #FA5882;
+  box-shadow: 0 0 8px #fefefe;
+}*/
+/*board.js 에서 추가되 css 함수*/
+.post_content_good_nonclick {
+  color: #A9F5A9;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(0,0,0,0);
+}
+.post_content_good_click {
+  color: white;
+  background-color: #068E06;
   box-shadow: 0 0 8px #fefefe;
 }
-
+.post_content_bad_nonclick {
+  color: #F6CED8;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(0,0,0,0);
+}
+.post_content_bad_click {
+  color: white;
+  background-color: #FA5882;
+  box-shadow: 0 0 8px #fefefe;
+}
 /* ======================================================== */
 /* 포스트 관리 모달 */
 .post_admin_modal {
@@ -1193,14 +1218,14 @@ label {
     transition: 0.4s;
   }
   .post_top:hover {
-    transform: translate(-50%, 0) scale(1.06, 1.06);
+    transform: translate(-53%, 0) scale(1.06, 1.06);
     box-shadow: 0 0 6px #bbbbbb;
   }
   .post_data_start {
     float: left;
     font-size: 15px;
     color: #333333;
-    margin-left: 45px;
+    margin-left: 60px;
   }
   .post_data_between {
     float: left;
@@ -1228,14 +1253,15 @@ label {
   }
   .post_content_img_image {
     height: auto;
-    max-width: 600px;
+    max-width: 100%;
+    height: 90%;
     background-size: cover;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
     border-radius: 8px;
-    box-shadow: 0 0 8px #666666;
+    box-shadow: 0 0 4px #666666;
     cursor: pointer;
     transition: 0.6s ease;
   }
@@ -1279,6 +1305,7 @@ label {
     width: 50px;
     height: 50px;
     transition: 0.4s;
+    border-radius: 8px;
   }
   
   .profile_title {
@@ -1334,53 +1361,68 @@ label {
     background-color: rgba(120, 120, 120, 0.7);
     color: #333333;
   }
+
   .post_content_good {
-    position: relative;
-    float: left;
-    left: 0px;
-    top: 0px;
-    bottom: 0px;
-    width: 40%;
-    height: 40px;
-    border-radius: 8px;
-    color: white;
-    font-size: 20px;
-    padding: 5px;
-    text-align: center;
-    background-color: #30A92C;
-    box-shadow: 0 0 8px #777777;
-    cursor: pointer;
-    transition: 0.6s;
-    margin-left: 10px;
-  }
-  .post_content_bad {
-    position: relative;
-    float: right;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
-    width: 40%;
-    height: 40px;
-    margin-left: 20px;
-    border-radius: 8px;
-    color: white;
-    font-size: 20px;
-    padding: 5px;
-    text-align: center;
-    background-color: #E93333;
-    box-shadow: 0 0 8px #777777;
-    cursor: pointer;
-    transition: 0.6s;
-    margin-right: 10px;
-  }
-  .post_content_good:hover {
-    background-color: #068E06;
-    box-shadow: 0 0 8px #fefefe;
-  }
-  .post_content_bad:hover {
-    background-color: #B60B0B;
-    box-shadow: 0 0 8px #fefefe;
-  }
+  border: 2px solid #A9F5A9;
+  color: #A9F5A9;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(0,0,0,0);
+  position: relative;
+  float: left;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 40%;
+  height: 40px;
+  border-radius: 8px;
+  font-size: 20px;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.6s;
+  margin-left: 10px;
+}
+.post_content_bad {
+  border: 2px solid #F6CED8;
+  color: #F6CED8;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(0,0,0,0);
+  position: relative;
+  float: right;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 40%;
+  height: 40px;
+  margin-left: 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.6s;
+  margin-right: 10px;
+}
+.post_content_good_nonclick {
+  color: #A9F5A9;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(0,0,0,0);
+}
+.post_content_good_click {
+  color: white;
+  background-color: #068E06;
+  box-shadow: 0 0 8px #fefefe;
+}
+.post_content_bad_nonclick {
+  color: #F6CED8;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(0,0,0,0);
+}
+.post_content_bad_click {
+  color: white;
+  background-color: #FA5882;
+  box-shadow: 0 0 8px #fefefe;
+}
   /* ======================================================== */
   /* 내정보 모달  = 모바일*/
   .myinfo_modal {

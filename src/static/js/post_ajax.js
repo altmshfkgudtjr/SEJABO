@@ -79,7 +79,7 @@ function post_edit() {
     
     if(post_edit_URL.length != 0 && post_edit_URL.slice(0, 4) != "http")
     {
-      alert("첨부링크는 Full URL로 기입해주세요. (http 포함)");
+      alert("http://를 포함해주세요.");
       return;
     }
 

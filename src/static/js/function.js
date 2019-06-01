@@ -1,12 +1,12 @@
 var location_cnt = 0;
 function location_now()
 {   
-    if(location_cnt == 0) 
+    if(location_cnt == 0) //접혀 있을때
     {
         $('#location_box').addClass('location_box_show');
         location_cnt++;
     }
-    else
+    else //열려 있을때
     {
         $('#location_box').removeClass('location_box_show');
         location_cnt--;
@@ -22,6 +22,10 @@ function remove_building_class()
     $(show_btn).removeClass('btn-danger');  //빨강
     $(show_btn).removeClass('btn-warning');  //노랑
 }
+
+$('#board1').click(function()
+{   if(location_cnt == 1) location_now();
+});
 
 //dae yul gwang hak
 $('#DYAI').click(function()
