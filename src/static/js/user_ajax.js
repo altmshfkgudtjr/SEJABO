@@ -2,8 +2,10 @@ var user_ID; //사용자 아이디
 var user_NAME; //사용자 이름
 var user_MAJOR; //사용자 학과
 var user_POST; //사용자 게시글
-var user_LIKE_POSTS = new Array; //사용자 좋아요 게시글
+var user_LIKE_POSTS = []; //사용자 좋아요 게시글
 var user_DISLIKE_POSTS = []; //사용자 싫어요 게시글
+
+get_user_info();
 
 function myinfo_user_page(json)
 {
@@ -11,15 +13,25 @@ function myinfo_user_page(json)
     user_NAME = json['user_name'];
     user_MAJOR = json['major_name'];
     user_POST = json['my_post'];
+    user_LIKE_POSTS = [];
+    user_DISLIKE_POSTS = [];
 
     //로그인 -> 내정보 버튼 변경
     $('#myinfo_button').css('display', 'block');
     $('#login_button').css('display', 'none');
 
     //내정보 -> identication
-    var idf_user_hash = MD5(user_ID+"");
-    var idf_user_data = new Identicon(idf_user_hash, img_options).toString();
-    $('#myinfo_user_img').attr("src", "data:image/png;  base64," + idf_user_data);
+    var ua = navigator.userAgent;
+    if ((ua.indexOf("iPad") != -1) || (ua.indexOf("iPhone") != -1) || (ua.indexOf("iPod") != -1)) 
+    {
+        $('#myinfo_user_img').attr("src", "../static/img/SejaboLOGO.png");
+    }
+    else
+    {
+        var idf_user_hash = MD5(user_ID+"");
+        var idf_user_data = new Identicon(idf_user_hash, img_options).toString();
+        $('#myinfo_user_img').attr("src", "data:image/tiff;  base64," + idf_user_data);
+    }
 
     //내정보 -> 이름 출력
     $('#myinfo_user_name').text(user_NAME);
@@ -62,6 +74,17 @@ function myinfo_user_page(json)
     {
         user_DISLIKE_POSTS.push(json['dislike_posts'][i]);
     }
+
+    if (myinfo_post_good_cnt == 1){
+        $('#myinfo_post_bigbox').empty();
+        remove_myinfo_post_contents();
+        likeDivMake(user_LIKE_POSTS);
+      }
+      else if (myinfo_post_bad_cnt == 1){
+        $('#myinfo_post_bigbox').empty();
+        remove_myinfo_post_contents();
+        likeDivMakeNot(user_DISLIKE_POSTS);
+      }
 }
 
 
@@ -75,10 +98,8 @@ function get_user_info()
         $.when(a_jax).done(function () {
             user_info = a_jax.responseJSON;
             var json = a_jax.responseJSON;
-            if (json['result'] == "success") {
-                
+            if (json['result'] == "success") {                
                 myinfo_user_page(json);
-                
             }
             else{
                 alert("자동 로그인에 실패했습니다. 다시 로그인 해주세요.");
@@ -91,12 +112,16 @@ function get_user_info()
     }
 }
 
-
-
 //로그인_AJAX
 function sejabo_login(){
     var login_id = $("input[name=student_ID]").val();
     var login_pw = $("input[name=student_PW]").val();
+
+    if(login_id.length <= 0 || login_pw.length <= 0)
+    {
+        alert("아이디 및 비밀번호를 입력해주세요.");
+        return;
+    }
 
     var send_data = {id: login_id, pw: login_pw};
 
@@ -132,3 +157,9 @@ function sejabo_login(){
     })
 }
 
+//엔터 로그인
+function sejabo_login_enter(){
+    if (window.event.keyCode == 13) {
+        sejabo_login();
+    }
+}

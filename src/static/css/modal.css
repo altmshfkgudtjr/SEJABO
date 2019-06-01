@@ -689,8 +689,8 @@
     padding-right: 15px;
   }
   .post_content_img_image {
-    height: 85%;
-    width: auto;
+    height: auto;
+    max-width: 80%;
     background-size: cover;
     position: absolute;
     left: 50%;
@@ -1223,8 +1223,8 @@
       padding-right: 10px;
     }
     .post_content_img_image {
-      height: 85%;
-      width: auto;
+      height: auto;
+      max-width: 600px;
       background-size: cover;
       position: absolute;
       left: 50%;

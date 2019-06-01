@@ -109,20 +109,16 @@ var myinfo_post_bad_cnt = 0;
 
 // When the user clicks the button, open the modal
 myinfo_button.onclick = function () {
+  $('#myinfo_post_bigbox').empty();
+  get_user_info();
   myinfo_modal.style.display = "block";
+  $('#myinfo_post_bigbox').empty();
   $('#myinfo_modal_content').addClass("magictime");
   $('#myinfo_modal_content').addClass("spaceInDown");
-  if (myinfo_post_good_cnt == 1){
-    remove_myinfo_post_contents();
-    likeDivMake(user_LIKE_POSTS);
-  }
-  else if (myinfo_post_bad_cnt == 1){
-    remove_myinfo_post_contents();
-    likeDivMakeNot(user_DISLIKE_POSTS);
-  }
 }
 // When the user clicks on <span> (x), close the modal
 myinfo_modal_close.onclick = function () {
+  $('#myinfo_post_bigbox').empty();
   myinfo_modal.style.display = "none";
   $('#myinfo_modal_content').removeClass("magictime");
   $('#myinfo_modal_content').removeClass("spaceInDown");
@@ -181,12 +177,6 @@ function myinfo_user_post_click(post_id) {
   //정보를 가져옴
   get_myinfo_post_modal(post_id);
 }
-//게시물 삭제하기 버튼을 눌렀을시
-document.getElementById('myinfo_user_post_delete').onclick = function() {
-  snackbar("내가 작성한 글이 삭제되었습니다.");
-  document.getElementById('myinfo_user_post').style.display = "none";
-  document.getElementById('myinfo_user_post_not').style.display = "block";
-}
 //======================================================================//
 //검색 모달 부분.
 var search_modal = document.getElementById("search_modal");
@@ -217,9 +207,6 @@ window.onclick = function (event) {
 //포스트 모달 부분.
 var post_modal = document.getElementById("post_modal");
 var post_modal_close = document.getElementsByClassName("post_modal_close")[0];
-//좋아요 싫어요 버튼 기본값
-var like_button_click_cnt = 0;
-var hate_button_click_cnt = 0;
 
 // When the user clicks the button, open the modal
 function post_button_click(post_id) {
@@ -254,32 +241,6 @@ function post_content_img_image_over(){
 // post_content_image out
 function post_content_img_image_out(){
   document.getElementById('post_content_img_image').style.transform = "translate(-50%, -50%) scale(1,1)";
-}
-
-
-//좋아요 누를 시
-document.getElementById('post_content_good').onclick = function() {
-  if (like_button_click_cnt == 0){
-    like_button_click_cnt = 1;
-    hate_button_click_cnt = 0;
-    $('#post_content_good').css('background-color', '#068E06');
-    $('#post_content_good').css('box-shadow', '0 0 8px #fefefe');
-    $('#post_content_bad').css('background-color', '#E93333');
-    $('#post_content_bad').css('box-shadow', '0 0 8px #777777');
-    post_like_button_click();
-  }
-}
-//싫어요 누를 시
-document.getElementById('post_content_bad').onclick = function() {
-  if (hate_button_click_cnt == 0){
-    like_button_click_cnt = 0;
-    hate_button_click_cnt = 1;
-    $('#post_content_good').css('background-color', '#30A92C');
-    $('#post_content_good').css('box-shadow', '0 0 8px #777777');
-    $('#post_content_bad').css('background-color', '#B60B0B');
-    $('#post_content_bad').css('box-shadow', '0 0 8px #fefefe');
-    post_hate_button_click();
-  }
 }
 //=============================================================//
 //게시글 관리
@@ -372,10 +333,17 @@ $('#post_admin_next_button').click(function(){
   {
     var title_len = $('#post_creat_title').val();
     var textarea_len = $('#post_creat_textarea').val();
+    var post_creat_URL = $('#post_creat_URL').val();
 
     if(title_len.length >= 100) 
     {
       alert("제목의 길이는 100자 미만입니다.");
+      post_admin_cnt--;
+    }
+
+    if(post_creat_URL.length != 0 && post_creat_URL.slice(0, 4) != "http")
+    {
+      alert("첨부링크는 Full URL로 기입해주세요. (http 포함)");
       post_admin_cnt--;
     }
   }
@@ -402,7 +370,7 @@ $('#post_admin_next_button').click(function(){
     //사진 설명 글 (피시와 모바일에서 다르게 보임)
     if (navigator.platform) {
       if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
-        $('#post_warning').text('(PC에서 보여질 크기를 선택해주세요.)');
+        $('#post_warning').text('(PC에서 보여질 크기를 선택해주세요. 기본값: XL)');
       }
     }
 

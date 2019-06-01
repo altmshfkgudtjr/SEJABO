@@ -24,6 +24,7 @@ if (navigator.platform) {
  }
  //좋아하는 글 div 생성 함수
  function likeDivMake(json_like_posts) {
+   $('#myinfo_post_bigbox').empty();
    var insertDiv = document.getElementById('myinfo_post_bigbox');
    var receive_user_post_good = json_like_posts
    for (var i =0; i< receive_user_post_good.length; i++){
@@ -50,6 +51,7 @@ if (navigator.platform) {
 
 //싫어하는 글 div 생성 함수
 function likeDivMakeNot(json_dislike_posts) {
+   $('#myinfo_post_bigbox').empty();
    var insertDiv = document.getElementById('myinfo_post_bigbox');
    var receive_user_post_bad = json_dislike_posts
    for (var i=0; i< receive_user_post_bad.length; i++){
@@ -145,7 +147,7 @@ function likeDivMakeNot(json_dislike_posts) {
             $('div').remove('#post_content_img');   //이미지 영역 삭제
          }
          else{
-            document.getElementById('post_content_img_image').setAttribute('src', new_post_box['img_url']);
+            document.getElementById('post_content_img_image').setAttribute('src', '../static/img_save/' + new_post_box['img_url']);
          }
       }
       else {
@@ -202,7 +204,7 @@ function likeDivMakeNot(json_dislike_posts) {
          }
          else{
             document.getElementById('post_content_good').style.left = "30px";
-            document.getElementById('post_content_img_image').setAttribute('src', new_post_box['img_url']);
+            document.getElementById('post_content_img_image').setAttribute('src', '../static/img_save/' + new_post_box['img_url']);
          }
       }
    }

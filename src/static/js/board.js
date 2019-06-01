@@ -51,7 +51,7 @@ function addElement (return_json) {
    if (navigator.platform) {
       /*모바일버젼*/
       if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
-         var box_shape = {'1': ['50', '80'], '2': ['80', '110'], '3': ['100', '150'], '4': ['120', '170']};
+         var box_shape = {'1': ['60', '80'], '2': ['80', '110'], '3': ['100', '150'], '4': ['130', '170']};
          var min_width = 10;            //가로 시작 지점
          var min_height = 55;         //세로 시작 지점
          var number = 10;            //최소단위 지정 (작을수록 시간이 오래걸림)
@@ -110,7 +110,7 @@ function addElement (return_json) {
                }
                else {
                   var newImgurl = receive_list[n-1]['img_url'];
-                  newImgurl = "url('" + newImgurl + "')";
+                  newImgurl = "url('../static/img_save/" + newImgurl + "')";
                   newDiv.style.backgroundImage = newImgurl;
                   newDiv.classList.add("box_css_img");
                }
@@ -231,7 +231,7 @@ function addElement (return_json) {
                   }
                   else {
                      var newImgurl = receive_list[n-1]['img_url'];
-                     newImgurl = "url('" + newImgurl + "')";
+                     newImgurl = "url('../static/img_save/" + newImgurl + "')";
                      newDiv.style.backgroundImage = newImgurl;
                      newDiv.classList.add("box_css_img");
                   }
@@ -315,7 +315,7 @@ function addElement (return_json) {
                }
                else {
                   var newImgurl = receive_list[n-1]['img_url'];
-                  newImgurl = "url('" + newImgurl + "')";
+                  newImgurl = "url('../static/img_save/" + newImgurl + "')";
                   newDiv.style.backgroundImage = newImgurl;
                   newDiv.classList.add("box_css_img");
                }
@@ -436,7 +436,7 @@ function addElement (return_json) {
                   }
                   else {
                      var newImgurl = receive_list[n-1]['img_url'];
-                     newImgurl = "url('" + newImgurl + "')";
+                     newImgurl = "url('../static/img_save/" + newImgurl + "')";
                      newDiv.style.backgroundImage = newImgurl;
                      newDiv.classList.add("box_css_img");
                   }
@@ -560,7 +560,7 @@ function get_post_content(post_id) {
             $('div').remove('#post_content_img');   //이미지 영역 삭제
          }
          else{
-            document.getElementById('post_content_img_image').setAttribute('src', new_post_box['img_url']);
+            document.getElementById('post_content_img_image').setAttribute('src', '../static/img_save/' + new_post_box['img_url']);
          }
       }
       else {
@@ -617,7 +617,7 @@ function get_post_content(post_id) {
          }
          else{
             document.getElementById('post_content_good').style.left = "30px";
-            document.getElementById('post_content_img_image').setAttribute('src', new_post_box['img_url']);
+            document.getElementById('post_content_img_image').setAttribute('src', '../static/img_save/' + new_post_box['img_url']);
          }
       }
    }
@@ -628,6 +628,7 @@ function get_post_content(post_id) {
 function remove_post_content() {
    if (navigator.platform) {
       if (filter.indexOf(navigator.platform.toLowerCase()) < 0) { //==모바일버젼
+         like_hate_button_click_return();
          //보내기 글자 없애기
          $('#share_button').empty();
          var share_button_icon = document.createElement("i");
@@ -693,7 +694,7 @@ function remove_post_content() {
          var like_symbol = document.createElement("i");
          var bad_symbol = document.createElement("i");
          like_symbol.setAttribute('class', 'fas fa-thumbs-up');
-         bad_symbol.setAttribute('class', 'fas fa-thumbs-up');
+         bad_symbol.setAttribute('class', 'fas fa-thumbs-down');
          document.getElementById('post_content_good').appendChild(like_symbol);
          document.getElementById('post_content_bad').appendChild(bad_symbol);
          //post_top 내용물 원상복구 작업
@@ -717,6 +718,7 @@ function remove_post_content() {
          $("#post_content_content").empty();
       }
       else {   //==PC 버젼
+         like_hate_button_click_return();
          //보내기 글자 없애기
          $('#share_button').empty();
          var share_button_icon = document.createElement("i");
@@ -781,7 +783,7 @@ function remove_post_content() {
          var like_symbol = document.createElement("i");
          var bad_symbol = document.createElement("i");
          like_symbol.setAttribute('class', 'fas fa-thumbs-up');
-         bad_symbol.setAttribute('class', 'fas fa-thumbs-up');
+         bad_symbol.setAttribute('class', 'fas fa-thumbs-down');
          document.getElementById('post_content_good').appendChild(like_symbol);
          document.getElementById('post_content_bad').appendChild(bad_symbol);
          //post_top 내용물 원상복구 작업
@@ -837,16 +839,230 @@ function clipboardCopy() {
    clipboard_textarea.select();
    document.execCommand("copy");
    document.getElementById('clipboard_copy').blur();
-   snackbar("URL 복사완료!");
+   if (receive_list_all_post['url'] == null){
+      snackbar("외부링크가 없습니다!");
+   }
+   else{
+      snackbar("URL 복사완료!");
+   }
    $('textarea').remove('#clipboard_copy');
 }
 
-//좋아요 버튼 클릭 시
-function post_like_button_click() {
-
+//새로고침을 위한 box_done return 함수
+function return_box_done() {
+   return box_done;
 }
 
-//싫어요 버튼 클릭 시
-function post_hate_button_click() {
-   
+
+
+
+//=============================================================
+//좋아요 싫어요 AJAX
+
+//좋아요 싫어요 버튼 기본값
+var like_button_click_cnt = 0;
+var hate_button_click_cnt = 0;
+
+//좋아요 싫어요 버튼 초기화 함수
+function like_hate_button_click_return() {
+   console.log("초기화");
+   like_button_click_cnt = 0;
+   hate_button_click_cnt = 0;
+   $('#post_content_good').css('background-color', '#30A92C');
+   $('#post_content_good').css('box-shadow', '0 0 8px #777777');
+   $('#post_content_bad').css('background-color', '#E93333');
+   $('#post_content_bad').css('box-shadow', '0 0 8px #777777');
+}
+
+//좋아요버튼 클릭시
+function post_like_button_click(now_id){
+    var a_jax = A_JAX('/like/'+now_id+'/'+1, "GET", localStorage.getItem('sejabo_token'));
+    $.when(a_jax).done(function(){
+        var json = a_jax.responseJSON;
+        if(json['result'] == "success")
+        {
+            var a_jax2 = A_JAX('/v/'+now_id, "GET", localStorage.getItem('sejabo_token'));
+            $.when(a_jax2).done(function(){
+                var json2 = a_jax2.responseJSON;
+                if (json2['result'] == "success"){
+                    var now_like_count = json2['list']["like_count"];
+                    var now_dislike_count = json2['list']["dislike_count"];
+                    $('#post_content_good').empty();
+                    $('#post_content_good').append(now_like_count);
+                    $('#post_content_good').append(" <i class='fas fa-thumbs-up'></i>")
+                    $('#post_content_bad').empty();
+                    $('#post_content_bad').append(now_dislike_count);
+                    $('#post_content_bad').append(" <i class='fas fa-thumbs-down'></i>")
+                }
+                else if (json['result'] == "bad request"){
+                    alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+                }
+                else{
+                    alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+                }
+            });
+        }
+        else if(json['result'] == "bad request")
+        {
+            alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+        }
+        else {
+            alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+        }
+    });
+}
+//좋아요 버튼 다시 클릭시.
+function post_like_button_non_click(now_id){
+    var a_jax = A_JAX('/like/'+now_id+'/'+1, "GET", localStorage.getItem('sejabo_token'));
+    $.when(a_jax).done(function(){
+        var json = a_jax.responseJSON;
+        if(json['result'] == "success")
+        {
+            var a_jax2 = A_JAX('/v/'+now_id, "GET", localStorage.getItem('sejabo_token'));
+            $.when(a_jax2).done(function(){
+                var json2 = a_jax2.responseJSON;
+                if (json2['result'] == "success"){
+                    var now_like_count = json2['list']["like_count"];
+                    var now_dislike_count = json2['list']["dislike_count"];
+                    $('#post_content_good').empty();
+                    $('#post_content_good').append(now_like_count);
+                    $('#post_content_good').append(" <i class='fas fa-thumbs-up'></i>")
+                    $('#post_content_bad').empty();
+                    $('#post_content_bad').append(now_dislike_count);
+                    $('#post_content_bad').append(" <i class='fas fa-thumbs-down'></i>")
+                }
+                else if (json['result'] == "bad request"){
+                    alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+                }
+                else{
+                    alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+                }
+            });
+        }
+        else if(json['result'] == "bad request")
+        {
+            alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+        }
+        else {
+            alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+        }
+    });
+}
+//싫어요 버튼 클릭시
+function post_hate_button_click(now_id){
+    var a_jax = A_JAX('/like/'+now_id+'/'+0, "GET", localStorage.getItem('sejabo_token'));
+    $.when(a_jax).done(function(){
+        var json = a_jax.responseJSON;
+        if(json['result'] == "success")
+        {
+            var a_jax2 = A_JAX('/v/'+now_id, "GET", localStorage.getItem('sejabo_token'));
+            $.when(a_jax2).done(function(){
+                var json2 = a_jax2.responseJSON;
+                if (json2['result'] == "success"){
+                    var now_like_count = json2['list']["like_count"];
+                    var now_dislike_count = json2['list']["dislike_count"];
+                    $('#post_content_good').empty();
+                    $('#post_content_good').append(now_like_count);
+                    $('#post_content_good').append(" <i class='fas fa-thumbs-up'></i>")
+                    $('#post_content_bad').empty();
+                    $('#post_content_bad').append(now_dislike_count);
+                    $('#post_content_bad').append(" <i class='fas fa-thumbs-down'></i>")
+                }
+                else if (json['result'] == "bad request"){
+                    alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+                }
+                else{
+                    alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+                }
+            });
+        }
+        else if(json['result'] == "bad request")
+        {
+            alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+        }
+        else {
+            alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+        }
+    });
+}
+function post_hate_button_non_click(now_id){
+    var a_jax = A_JAX('/like/'+now_id+'/'+0, "GET", localStorage.getItem('sejabo_token'));
+    $.when(a_jax).done(function(){
+        var json = a_jax.responseJSON;
+        if(json['result'] == "success")
+        {
+            var a_jax2 = A_JAX('/v/'+now_id, "GET", localStorage.getItem('sejabo_token'));
+            $.when(a_jax2).done(function(){
+                var json2 = a_jax2.responseJSON;
+                if (json2['result'] == "success"){
+                    var now_like_count = json2['list']["like_count"];
+                    var now_dislike_count = json2['list']["dislike_count"];
+                    $('#post_content_good').empty();
+                    $('#post_content_good').append(now_like_count);
+                    $('#post_content_good').append(" <i class='fas fa-thumbs-up'></i>")
+                    $('#post_content_bad').empty();
+                    $('#post_content_bad').append(now_dislike_count);
+                    $('#post_content_bad').append(" <i class='fas fa-thumbs-down'></i>")
+                }
+                else if (json['result'] == "bad request"){
+                    alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+                }
+                else{
+                    alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+                }
+            });
+        }
+        else if(json['result'] == "bad request")
+        {
+            alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+        }
+        else {
+            alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
+        }
+    });
+}
+
+//좋아요 누를 시
+document.getElementById('post_content_good').onclick = function() {
+    var now_id = $('#post_modal_content').attr('title');
+    if (like_button_click_cnt == 0){
+        like_button_click_cnt = 1;
+        hate_button_click_cnt = 0;
+        $('#post_content_good').css('background-color', '#068E06');
+        $('#post_content_good').css('box-shadow', '0 0 8px #fefefe');
+        $('#post_content_bad').css('background-color', '#E93333');
+        $('#post_content_bad').css('box-shadow', '0 0 8px #777777');
+        post_like_button_click(now_id);
+    }
+    else {
+        like_button_click_cnt = 0;
+        hate_button_click_cnt = 0;
+        $('#post_content_good').css('background-color', '#30A92C');
+        $('#post_content_good').css('box-shadow', '0 0 8px #777777');
+        $('#post_content_bad').css('background-color', '#E93333');
+        $('#post_content_bad').css('box-shadow', '0 0 8px #777777');
+        post_like_button_non_click(now_id);
+    }
+}
+//싫어요 누를 시
+document.getElementById('post_content_bad').onclick = function() {
+    var now_id = $('#post_modal_content').attr('title');
+    if (hate_button_click_cnt == 0){
+        like_button_click_cnt = 0;
+        hate_button_click_cnt = 1;
+        $('#post_content_good').css('background-color', '#30A92C');
+        $('#post_content_good').css('box-shadow', '0 0 8px #777777');
+        $('#post_content_bad').css('background-color', '#B60B0B');
+        $('#post_content_bad').css('box-shadow', '0 0 8px #fefefe');
+        post_hate_button_click(now_id);
+    }
+    else {
+        like_button_click_cnt = 0;
+        hate_button_click_cnt = 0;
+        $('#post_content_good').css('background-color', '#30A92C');
+        $('#post_content_good').css('box-shadow', '0 0 8px #777777');
+        $('#post_content_bad').css('background-color', '#E93333');
+        $('#post_content_bad').css('box-shadow', '0 0 8px #777777');
+        post_hate_button_non_click(now_id);
+    }
 }

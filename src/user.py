@@ -13,6 +13,8 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 BUILD_LIST = {"dae":101, "gwang":102, "hak":103, "yul":104}
 EXP_DATE_dict = {1:20, 2:15, 3:10, 4:7}
 
+#수정에서 이미 있는 게시물 방식 생각하기
+
 #게시물 삭제
 @bp.route('/delete_post/<int:post_id>')
 @jwt_required
@@ -46,12 +48,12 @@ def add_post():
    url = request.form.get('url')
    if url == "": url = None
    if not all(i in build for i in build):
-   	abort(400)
+      abort(400)
    if not (len(title) >= 1 and len(title) <= 500):
-   	abort(400)
+      abort(400)
    if size not in [1,2,3,4]: abort(400)
    if get_add_day(EXP_DATE_dict[size]) < exp_date:
-   	abort(400)
+      abort(400)
    try:
       datetime.datetime.strptime(exp_date,"%Y-%m-%d")
    except:
@@ -81,8 +83,8 @@ def add_post():
       cursor.execute(sql)
       result = cursor.fetchone()
       for i in build:
-      	sql = "insert into post_building values(%s,%s);"
-      	cursor.execute(sql,(BUILD_LIST[i],result["post_id"]))
+         sql = "insert into post_building values(%s,%s);"
+         cursor.execute(sql,(BUILD_LIST[i],result["post_id"]))
    g.db.commit()
    return jsonify(result = "success")
 
@@ -98,7 +100,6 @@ def modify_post():
       cursor.execute(sql, (current_user['student_id'],))
       result = cursor.fetchone()
    if result is None:
-      print(0)
       abort(400)
    print("sad")
    print(request.form.get('title'))
