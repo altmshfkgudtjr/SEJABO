@@ -286,7 +286,7 @@ $('#post_select_box_XL').click(function(){
       $('.post_select_box_img').css('height', '440');
     }
   }
-  $('#post_admin_modal_date_select').attr('max','7')
+  $('#post_admin_modal_date_select').attr('max','6')
 });
 $('#post_select_box_L').click(function(){
   if (navigator.platform) {
@@ -298,7 +298,7 @@ $('#post_select_box_L').click(function(){
       $('.post_select_box_img').css('height', '360');
     }
   }
-  $('#post_admin_modal_date_select').attr('max', '10')
+  $('#post_admin_modal_date_select').attr('max', '9')
 });
 $('#post_select_box_M').click(function(){
   if (navigator.platform) {
@@ -309,7 +309,7 @@ $('#post_select_box_M').click(function(){
       $('.post_select_box_img').css('height', '280');
     }
   }
-  $('#post_admin_modal_date_select').attr('max', '15')
+  $('#post_admin_modal_date_select').attr('max', '14')
 });
 $('#post_select_box_S').click(function(){
   if (navigator.platform) {
@@ -320,7 +320,7 @@ $('#post_select_box_S').click(function(){
       $('.post_select_box_img').css('height', '220');
     }
   }
-  $('#post_admin_modal_date_select').attr('max', '20')
+  $('#post_admin_modal_date_select').attr('max', '19')
 });
 
 //창 이동!

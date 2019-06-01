@@ -61,7 +61,12 @@ function myinfo_user_page(json)
         //내정보 -> 내 게시글 -> 내용 출력
         $('#myinfo_user_post_content').text(json['my_post']['content']);
 
+        $('#post_edit_title_real').val(user_POST['title']);
+        $('#post_edit_textarea').val(user_POST['content']);
+        $('#post_edit_URL').val(user_POST['url']);
+
     }
+
     
     //내정보 -> 좋아요 게시글 리스트 생성
     for(var i=0; i < json['like_posts'].length; i++)
@@ -145,6 +150,8 @@ function sejabo_login(){
             
             //마이 페이지 생성
             get_user_info();
+
+            snackbar('로그인 성공! >_<');
 
             //로그인 모달 닫기
             login_modal.style.display = "none";

@@ -17,10 +17,10 @@ var show_btn = document.getElementById('location_now');
 
 function remove_building_class()
 {
-    $(show_btn).removeClass('btn-primary');
-    $(show_btn).removeClass('btn-success');
-    $(show_btn).removeClass('btn-danger');
-    $(show_btn).removeClass('btn-warning');
+    $(show_btn).removeClass('btn-primary'); //파란
+    $(show_btn).removeClass('btn-success'); //초록
+    $(show_btn).removeClass('btn-danger');  //빨강
+    $(show_btn).removeClass('btn-warning');  //노랑
 }
 
 //dae yul gwang hak
@@ -73,6 +73,13 @@ document.getElementById("new_page").onclick = function() {
     }
     else if ($('#location_now').text() == '율곡관'){
         refleshPage('yul');
+    }
+    else if($('#location_now').text() == '검색결과')
+    {
+        remove_building_class();
+        $(show_btn).addClass('btn-primary');
+        $(show_btn).text('세종이노센터');
+        refleshPage('dae');
     }
     else {
         refleshPage('all')

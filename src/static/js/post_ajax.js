@@ -33,6 +33,12 @@ function post_submit(){
         }
     }
 
+    if(post_build.length == 0)
+    {
+        alert('게시 건물을 하나 이상 선택해주세요!');
+        return;
+    }
+
     formData.append('url', post_url);
     formData.append('build', post_build);
     formData.append('title', post_title);
@@ -63,7 +69,6 @@ function post_submit(){
         }
     })
 }
-
 //게시글 수정 =============================
 function post_edit() {
     var formData = new FormData();

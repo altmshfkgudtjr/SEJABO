@@ -865,7 +865,6 @@ var hate_button_click_cnt = 0;
 
 //좋아요 싫어요 버튼 초기화 함수
 function like_hate_button_click_return() {
-   console.log("초기화");
    like_button_click_cnt = 0;
    hate_button_click_cnt = 0;
    $('#post_content_good').css('background-color', '#30A92C');
@@ -881,63 +880,7 @@ function post_like_button_click(now_id){
         var json = a_jax.responseJSON;
         if(json['result'] == "success")
         {
-            var a_jax2 = A_JAX('/v/'+now_id, "GET", localStorage.getItem('sejabo_token'));
-            $.when(a_jax2).done(function(){
-                var json2 = a_jax2.responseJSON;
-                if (json2['result'] == "success"){
-                    var now_like_count = json2['list']["like_count"];
-                    var now_dislike_count = json2['list']["dislike_count"];
-                    $('#post_content_good').empty();
-                    $('#post_content_good').append(now_like_count);
-                    $('#post_content_good').append(" <i class='fas fa-thumbs-up'></i>")
-                    $('#post_content_bad').empty();
-                    $('#post_content_bad').append(now_dislike_count);
-                    $('#post_content_bad').append(" <i class='fas fa-thumbs-down'></i>")
-                }
-                else if (json['result'] == "bad request"){
-                    alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
-                }
-                else{
-                    alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
-                }
-            });
-        }
-        else if(json['result'] == "bad request")
-        {
-            alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
-        }
-        else {
-            alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
-        }
-    });
-}
-//좋아요 버튼 다시 클릭시.
-function post_like_button_non_click(now_id){
-    var a_jax = A_JAX('/like/'+now_id+'/'+1, "GET", localStorage.getItem('sejabo_token'));
-    $.when(a_jax).done(function(){
-        var json = a_jax.responseJSON;
-        if(json['result'] == "success")
-        {
-            var a_jax2 = A_JAX('/v/'+now_id, "GET", localStorage.getItem('sejabo_token'));
-            $.when(a_jax2).done(function(){
-                var json2 = a_jax2.responseJSON;
-                if (json2['result'] == "success"){
-                    var now_like_count = json2['list']["like_count"];
-                    var now_dislike_count = json2['list']["dislike_count"];
-                    $('#post_content_good').empty();
-                    $('#post_content_good').append(now_like_count);
-                    $('#post_content_good').append(" <i class='fas fa-thumbs-up'></i>")
-                    $('#post_content_bad').empty();
-                    $('#post_content_bad').append(now_dislike_count);
-                    $('#post_content_bad').append(" <i class='fas fa-thumbs-down'></i>")
-                }
-                else if (json['result'] == "bad request"){
-                    alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
-                }
-                else{
-                    alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
-                }
-            });
+            //snackbar("좋아요!");
         }
         else if(json['result'] == "bad request")
         {
@@ -955,62 +898,7 @@ function post_hate_button_click(now_id){
         var json = a_jax.responseJSON;
         if(json['result'] == "success")
         {
-            var a_jax2 = A_JAX('/v/'+now_id, "GET", localStorage.getItem('sejabo_token'));
-            $.when(a_jax2).done(function(){
-                var json2 = a_jax2.responseJSON;
-                if (json2['result'] == "success"){
-                    var now_like_count = json2['list']["like_count"];
-                    var now_dislike_count = json2['list']["dislike_count"];
-                    $('#post_content_good').empty();
-                    $('#post_content_good').append(now_like_count);
-                    $('#post_content_good').append(" <i class='fas fa-thumbs-up'></i>")
-                    $('#post_content_bad').empty();
-                    $('#post_content_bad').append(now_dislike_count);
-                    $('#post_content_bad').append(" <i class='fas fa-thumbs-down'></i>")
-                }
-                else if (json['result'] == "bad request"){
-                    alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
-                }
-                else{
-                    alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
-                }
-            });
-        }
-        else if(json['result'] == "bad request")
-        {
-            alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
-        }
-        else {
-            alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
-        }
-    });
-}
-function post_hate_button_non_click(now_id){
-    var a_jax = A_JAX('/like/'+now_id+'/'+0, "GET", localStorage.getItem('sejabo_token'));
-    $.when(a_jax).done(function(){
-        var json = a_jax.responseJSON;
-        if(json['result'] == "success")
-        {
-            var a_jax2 = A_JAX('/v/'+now_id, "GET", localStorage.getItem('sejabo_token'));
-            $.when(a_jax2).done(function(){
-                var json2 = a_jax2.responseJSON;
-                if (json2['result'] == "success"){
-                    var now_like_count = json2['list']["like_count"];
-                    var now_dislike_count = json2['list']["dislike_count"];
-                    $('#post_content_good').empty();
-                    $('#post_content_good').append(now_like_count);
-                    $('#post_content_good').append(" <i class='fas fa-thumbs-up'></i>")
-                    $('#post_content_bad').empty();
-                    $('#post_content_bad').append(now_dislike_count);
-                    $('#post_content_bad').append(" <i class='fas fa-thumbs-down'></i>")
-                }
-                else if (json['result'] == "bad request"){
-                    alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
-                }
-                else{
-                    alert("일시적인 오류가 발생했습니다. 잠시후 다시 시도해주세요.");
-                }
-            });
+            //snackbar("싫어요!");
         }
         else if(json['result'] == "bad request")
         {
@@ -1022,47 +910,120 @@ function post_hate_button_non_click(now_id){
     });
 }
 
+
 //좋아요 누를 시
 document.getElementById('post_content_good').onclick = function() {
     var now_id = $('#post_modal_content').attr('title');
-    if (like_button_click_cnt == 0){
-        like_button_click_cnt = 1;
-        hate_button_click_cnt = 0;
-        $('#post_content_good').css('background-color', '#068E06');
-        $('#post_content_good').css('box-shadow', '0 0 8px #fefefe');
-        $('#post_content_bad').css('background-color', '#E93333');
-        $('#post_content_bad').css('box-shadow', '0 0 8px #777777');
-        post_like_button_click(now_id);
+    post_like_button_click(now_id);
+    //좋아요 싫어요 전부 안 눌러져있는 경우
+    if (like_button_click_cnt == 0 && hate_button_click_cnt == 0){
+         like_button_click_cnt = 1;
+         $('#post_content_good').css('background-color', '#068E06'); // 좋아요 1
+         $('#post_content_good').css('box-shadow', '0 0 8px #fefefe');
+         $('#post_content_bad').css('background-color', '#E93333'); // 싫어요 0
+         $('#post_content_bad').css('box-shadow', '0 0 8px #777777');
+         var now_like_count = $('#post_content_good').text()*1+1;
+         $('#post_content_good').empty();
+         $('#post_content_good').append(now_like_count);
+         $('#post_content_good').append(" <i class='fas fa-thumbs-up'></i>");
+         $('#fa-thumbs-up').remove();
+         var now_dislike_count = $('#post_content_bad').text()*1;
+         $('#post_content_bad').empty();
+         $('#post_content_bad').append(now_dislike_count);
+         $('#post_content_bad').append(" <i class='fas fa-thumbs-down'></i>");
     }
+    //좋아요 안 눌러져있고, 싫어요 눌러져 있는 경우
+    else if (like_button_click_cnt == 0 && hate_button_click_cnt == 1){
+         like_button_click_cnt = 1;
+         hate_button_click_cnt = 0;
+         $('#post_content_good').css('background-color', '#068E06'); // 좋아요 1
+         $('#post_content_good').css('box-shadow', '0 0 8px #fefefe');
+         $('#post_content_bad').css('background-color', '#E93333'); // 싫어요 0
+         $('#post_content_bad').css('box-shadow', '0 0 8px #777777');
+         $('#fa-thumbs-up').remove();
+         var now_like_count = $('#post_content_good').text()*1+1;
+         $('#post_content_good').empty();
+         $('#post_content_good').append(now_like_count);
+         $('#post_content_good').append(" <i class='fas fa-thumbs-up'></i>");
+         $('#fa-thumbs-up').remove();
+         var now_dislike_count = $('#post_content_bad').text()*1-1;
+         $('#post_content_bad').empty();
+         $('#post_content_bad').append(now_dislike_count);
+         $('#post_content_bad').append(" <i class='fas fa-thumbs-down'></i>");
+    }
+    //좋아요를 취소시키는 경우
     else {
-        like_button_click_cnt = 0;
-        hate_button_click_cnt = 0;
-        $('#post_content_good').css('background-color', '#30A92C');
-        $('#post_content_good').css('box-shadow', '0 0 8px #777777');
-        $('#post_content_bad').css('background-color', '#E93333');
-        $('#post_content_bad').css('box-shadow', '0 0 8px #777777');
-        post_like_button_non_click(now_id);
+         like_button_click_cnt = 0;
+         $('#post_content_good').css('background-color', '#30A92C'); // 좋아요 0
+         $('#post_content_good').css('box-shadow', '0 0 8px #777777');
+         $('#post_content_bad').css('background-color', '#E93333'); // 싫어요 0
+         $('#post_content_bad').css('box-shadow', '0 0 8px #777777');
+         var now_like_count = $('#post_content_good').text()*1-1;
+         $('#post_content_good').empty();
+         $('#post_content_good').append(now_like_count);
+         $('#post_content_good').append(" <i class='fas fa-thumbs-up'></i>");
+         $('#fa-thumbs-up').remove();
+         var now_dislike_count = $('#post_content_bad').text()*1;
+         $('#post_content_bad').empty();
+         $('#post_content_bad').append(now_dislike_count);
+         $('#post_content_bad').append(" <i class='fas fa-thumbs-down'></i>");
     }
 }
 //싫어요 누를 시
 document.getElementById('post_content_bad').onclick = function() {
     var now_id = $('#post_modal_content').attr('title');
-    if (hate_button_click_cnt == 0){
-        like_button_click_cnt = 0;
-        hate_button_click_cnt = 1;
-        $('#post_content_good').css('background-color', '#30A92C');
-        $('#post_content_good').css('box-shadow', '0 0 8px #777777');
-        $('#post_content_bad').css('background-color', '#B60B0B');
-        $('#post_content_bad').css('box-shadow', '0 0 8px #fefefe');
-        post_hate_button_click(now_id);
+    post_hate_button_click(now_id);
+    //좋아요 싫어요 전부 안 눌러져있는 경우
+    if (like_button_click_cnt == 0 && hate_button_click_cnt == 0){
+         hate_button_click_cnt = 1;
+         $('#post_content_good').css('background-color', '#30A92C'); // 좋아요 0
+         $('#post_content_good').css('box-shadow', '0 0 8px #777777');
+         $('#post_content_bad').css('background-color', '#B60B0B'); // 싫어요 1
+         $('#post_content_bad').css('box-shadow', '0 0 8px #fefefe');
+         var now_like_count = $('#post_content_good').text()*1;
+         $('#post_content_good').empty();
+         $('#post_content_good').append(now_like_count);
+         $('#post_content_good').append(" <i class='fas fa-thumbs-up'></i>");
+         $('#fa-thumbs-up').remove();
+         var now_dislike_count = $('#post_content_bad').text()*1+1;
+         $('#post_content_bad').empty();
+         $('#post_content_bad').append(now_dislike_count);
+         $('#post_content_bad').append(" <i class='fas fa-thumbs-down'></i>");
     }
+    //좋아요 눌러져있고, 싫어요 안 눌러져 있는 경우
+    else if (like_button_click_cnt == 1 && hate_button_click_cnt == 0){
+         like_button_click_cnt = 0;
+         hate_button_click_cnt = 1;
+         $('#post_content_good').css('background-color', '#30A92C'); // 좋아요 0
+         $('#post_content_good').css('box-shadow', '0 0 8px #777777');
+         $('#post_content_bad').css('background-color', '#B60B0B'); // 싫어요 1
+         $('#post_content_bad').css('box-shadow', '0 0 8px #fefefe');
+         $('#fa-thumbs-up').remove();
+         var now_like_count = $('#post_content_good').text()*1-1;
+         $('#post_content_good').empty();
+         $('#post_content_good').append(now_like_count);
+         $('#post_content_good').append(" <i class='fas fa-thumbs-up'></i>");
+         $('#fa-thumbs-up').remove();
+         var now_dislike_count = $('#post_content_bad').text()*1+1;
+         $('#post_content_bad').empty();
+         $('#post_content_bad').append(now_dislike_count);
+         $('#post_content_bad').append(" <i class='fas fa-thumbs-down'></i>");
+    }
+    //싫어요를 취소시키는 경우
     else {
-        like_button_click_cnt = 0;
-        hate_button_click_cnt = 0;
-        $('#post_content_good').css('background-color', '#30A92C');
-        $('#post_content_good').css('box-shadow', '0 0 8px #777777');
-        $('#post_content_bad').css('background-color', '#E93333');
-        $('#post_content_bad').css('box-shadow', '0 0 8px #777777');
-        post_hate_button_non_click(now_id);
+         hate_button_click_cnt = 0;
+         $('#post_content_good').css('background-color', '#30A92C'); // 좋아요 0
+         $('#post_content_good').css('box-shadow', '0 0 8px #777777');
+         $('#post_content_bad').css('background-color', '#E93333'); // 싫어요 0
+         $('#post_content_bad').css('box-shadow', '0 0 8px #777777');
+         var now_like_count = $('#post_content_good').text()*1;
+         $('#post_content_good').empty();
+         $('#post_content_good').append(now_like_count);
+         $('#post_content_good').append(" <i class='fas fa-thumbs-up'></i>");
+         $('#fa-thumbs-up').remove();
+         var now_dislike_count = $('#post_content_bad').text()*1-1;
+         $('#post_content_bad').empty();
+         $('#post_content_bad').append(now_dislike_count);
+         $('#post_content_bad').append(" <i class='fas fa-thumbs-down'></i>");
     }
 }
